@@ -1,268 +1,1350 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant" data-theme="light" data-lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>TimmyChao</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
+    <meta
+      name="description"
+      content="趙奕錡 (YICHI Chao) — 軟體工程師 / 全端工程師。在無外網的工廠環境中，從零打造工業級 AI 系統與自托管基礎設施。Software / Full-Stack Engineer building industrial AI from scratch."
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-      crossorigin="anonymous"
-    ></script>
+    <title>趙奕錡 YICHI Chao — Software / Full-Stack Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+TC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23efeee8'/%3E%3Crect x='6' y='6' width='20' height='20' rx='1.5' fill='none' stroke='%231a1814' stroke-width='2'/%3E%3Crect x='11' y='11' width='10' height='8' fill='none' stroke='%23c23b22' stroke-width='1.6'/%3E%3C/svg%3E"
+    />
+
     <style>
+      :root {
+        /* light / e-paper day mode (default) */
+        --paper: #efeee8;
+        --paper-2: #e8e7e0;
+        --card: #f6f5f0;
+        --ink: #1a1814;
+        --ink-2: #4c483f;
+        --muted: #837e72;
+        --line: #d2cfc4;
+        --line-strong: #bcb8ab;
+        --spot: #c23b22;
+        --spot-soft: rgba(194, 59, 34, 0.1);
+        --on-spot: #fbf9f4;
+        --dither: rgba(26, 24, 20, 0.42);
+        --flash: #1a1814;
+
+        --ff-display: "IBM Plex Sans Condensed", "IBM Plex Sans TC", sans-serif;
+        --ff-sans: "IBM Plex Sans", "IBM Plex Sans TC", sans-serif;
+        --ff-tc: "IBM Plex Sans TC", "IBM Plex Sans", sans-serif;
+        --ff-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+        --maxw: 1140px;
+        --pad: clamp(1.15rem, 4.5vw, 3rem);
+      }
+
+      html[data-theme="dark"] {
+        --paper: #14130f;
+        --paper-2: #1a1914;
+        --card: #1e1c16;
+        --ink: #ece8dc;
+        --ink-2: #b6b0a0;
+        --muted: #8b8576;
+        --line: #322f28;
+        --line-strong: #46423a;
+        --spot: #e75f40;
+        --spot-soft: rgba(231, 95, 64, 0.14);
+        --on-spot: #14130f;
+        --dither: rgba(236, 232, 220, 0.4);
+        --flash: #ece8dc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
-        background-color: #cccccc;
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--ff-sans);
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+        transition: background-color 0.4s ease, color 0.4s ease;
+      }
+      ::selection {
+        background: var(--spot);
+        color: var(--on-spot);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--spot);
+        outline-offset: 3px;
+      }
+
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding-inline: var(--pad);
+      }
+      .mono {
+        font-family: var(--ff-mono);
+      }
+
+      /* ---------- bilingual visibility ---------- */
+      html[data-lang="zh"] [lang="en"] {
+        display: none !important;
+      }
+      html[data-lang="en"] [lang="zh"] {
+        display: none !important;
+      }
+
+      /* ---------- e-ink refresh flash ---------- */
+      .refresh {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: var(--flash);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .refresh--go {
+        animation: eink 0.32s steps(2, end) forwards;
+      }
+      @keyframes eink {
+        0% {
+          opacity: 0;
+        }
+        40% {
+          opacity: 0.92;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* ---------- top bar ---------- */
+      .bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: color-mix(in srgb, var(--paper) 88%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .bar__in {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 0.75rem;
+      }
+      .brand {
+        font-family: var(--ff-mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+      }
+      .brand b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .brand .sq {
+        width: 9px;
+        height: 9px;
+        border: 1.5px solid var(--spot);
+        display: inline-block;
+      }
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .seg {
+        display: inline-flex;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .seg button {
+        all: unset;
+        cursor: pointer;
+        font-family: var(--ff-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        padding: 0.32rem 0.7rem;
+        color: var(--muted);
+        line-height: 1.4;
+        transition: background 0.2s, color 0.2s;
+      }
+      .seg button[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .seg button:hover:not([aria-pressed="true"]) {
+        color: var(--ink);
+      }
+      .iconbtn {
+        all: unset;
+        cursor: pointer;
+        display: inline-grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        color: var(--ink);
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .iconbtn:hover {
+        background: var(--spot-soft);
+        border-color: var(--spot);
+        color: var(--spot);
+      }
+      .iconbtn svg {
+        width: 16px;
+        height: 16px;
+      }
+      html[data-theme="light"] .iconbtn .moon {
+        display: block;
+      }
+      html[data-theme="light"] .iconbtn .sun {
+        display: none;
+      }
+      html[data-theme="dark"] .iconbtn .moon {
+        display: none;
+      }
+      html[data-theme="dark"] .iconbtn .sun {
+        display: block;
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        padding-block: clamp(2.6rem, 7vw, 5.5rem) clamp(2.4rem, 6vw, 4.5rem);
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: center;
+      }
+      @media (max-width: 880px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 2.4rem;
+        }
+      }
+      .hero__eyebrow {
+        font-family: var(--ff-mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin: 0 0 1.4rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.9rem;
+        align-items: center;
+      }
+      .hero__eyebrow b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .hero__eyebrow .tick {
+        color: var(--spot);
+      }
+      .hero__title {
+        font-family: var(--ff-display);
+        font-weight: 700;
+        font-size: clamp(2.3rem, 5.6vw, 4.3rem);
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+        margin: 0;
+        max-width: 16ch;
+        text-wrap: balance;
+      }
+      .hero__title .spot {
+        color: var(--spot);
+      }
+      html[data-lang="zh"] .hero__title {
+        line-height: 1.18;
+        letter-spacing: 0.01em;
+      }
+      .hero__traits {
+        font-family: var(--ff-mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        color: var(--ink-2);
+        margin: 1.5rem 0 0;
+      }
+      .hero__cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1.8rem;
+      }
+      .btn {
+        font-family: var(--ff-mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        padding: 0.6rem 1.1rem;
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, color 0.2s, transform 0.15s;
+      }
+      .btn--solid {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .btn--solid:hover {
+        background: var(--spot);
+        border-color: var(--spot);
+        color: var(--on-spot);
+        transform: translateY(-1px);
+      }
+      .btn--ghost:hover {
+        background: var(--ink);
+        color: var(--paper);
+        transform: translateY(-1px);
+      }
+
+      /* spec strip */
+      .specs {
+        list-style: none;
+        margin: clamp(1.8rem, 4vw, 2.6rem) 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid var(--line-strong);
+      }
+      @media (max-width: 520px) {
+        .specs {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .specs li {
+        padding: 0.9rem 0.9rem 0.2rem 0;
+        border-right: 1px solid var(--line);
+        padding-left: 0;
+      }
+      .specs li:last-child {
+        border-right: 0;
+      }
+      .specs dt {
+        font-family: var(--ff-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .specs dd {
+        margin: 0.3rem 0 0;
+        font-family: var(--ff-display);
+        font-weight: 600;
+        font-size: 1.02rem;
+        color: var(--ink);
+      }
+
+      /* hero panel — mock E-Ink defect detection view */
+      .panel {
+        position: relative;
+        aspect-ratio: 4 / 3.4;
+        border: 1px solid var(--line-strong);
+        background: var(--card);
+        box-shadow: 0 1px 0 var(--line-strong), 8px 8px 0 -1px var(--paper-2),
+          8px 8px 0 0 var(--line);
+        overflow: hidden;
+      }
+      .panel__scr {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(var(--dither) 0.6px, transparent 0.7px);
+        background-size: 3px 3px;
+        -webkit-mask-image: linear-gradient(
+          115deg,
+          black 0%,
+          rgba(0, 0, 0, 0.25) 55%,
+          black 100%
+        );
+        mask-image: linear-gradient(
+          115deg,
+          black 0%,
+          rgba(0, 0, 0, 0.25) 55%,
+          black 100%
+        );
+        opacity: 0.9;
+      }
+      .panel__label {
+        position: absolute;
+        top: 0.6rem;
+        left: 0.7rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        text-transform: uppercase;
+        z-index: 3;
+      }
+      .panel__meta {
+        position: absolute;
+        bottom: 0.6rem;
+        left: 0.7rem;
+        right: 0.7rem;
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--ff-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        text-transform: uppercase;
+        z-index: 3;
+      }
+      .panel__meta b {
+        color: var(--spot);
+      }
+      .bbox {
+        position: absolute;
+        border: 1.4px solid var(--spot);
+        z-index: 2;
+      }
+      .bbox span {
+        position: absolute;
+        top: -1.4px;
+        left: -1.4px;
+        transform: translateY(-100%);
+        background: var(--spot);
+        color: var(--on-spot);
+        font-family: var(--ff-mono);
+        font-size: 0.56rem;
+        letter-spacing: 0.02em;
+        padding: 0.05rem 0.3rem;
+        white-space: nowrap;
+      }
+      .scan {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 28%;
+        z-index: 1;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          color-mix(in srgb, var(--ink) 9%, transparent),
+          transparent
+        );
+        animation: scan 4.6s linear infinite;
+      }
+      @keyframes scan {
+        0% {
+          top: -28%;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+
+      /* ---------- section scaffold ---------- */
+      section.sec {
+        padding-block: clamp(2.6rem, 6vw, 4.5rem);
+        border-top: 1px solid var(--line);
+      }
+      .sec__head {
+        display: flex;
+        align-items: baseline;
+        gap: 0.9rem;
+        margin: 0 0 clamp(1.6rem, 3.5vw, 2.6rem);
+      }
+      .sec__idx {
+        font-family: var(--ff-mono);
+        font-size: 0.74rem;
+        color: var(--spot);
+        letter-spacing: 0.05em;
+      }
+      .sec__title {
+        font-family: var(--ff-display);
+        font-weight: 700;
+        font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+        letter-spacing: -0.005em;
+        margin: 0;
+      }
+      .sec__title small {
+        font-family: var(--ff-mono);
+        font-weight: 500;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-left: 0.7rem;
+      }
+
+      /* ---------- experience ---------- */
+      .job {
+        position: relative;
+        padding-left: clamp(0px, 2vw, 1.6rem);
+      }
+      .job + .job {
+        margin-top: clamp(2.4rem, 5vw, 3.4rem);
+      }
+      .job__head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.3rem 1rem;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid var(--line-strong);
+      }
+      .job__co {
+        font-family: var(--ff-display);
+        font-weight: 700;
+        font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .status-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--spot);
+        box-shadow: 0 0 0 0 var(--spot);
+        animation: pulse 2.6s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--spot) 55%, transparent);
+        }
+        70% {
+          box-shadow: 0 0 0 8px transparent;
+        }
+        100% {
+          box-shadow: 0 0 0 0 transparent;
+        }
+      }
+      .job__role {
+        font-family: var(--ff-mono);
+        font-size: 0.82rem;
+        color: var(--ink-2);
+      }
+      .job__when {
+        font-family: var(--ff-mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .job__intro {
+        font-family: var(--ff-tc);
+        color: var(--ink-2);
+        font-size: 0.98rem;
+        margin: 1rem 0 0;
+      }
+
+      .proj {
+        margin-top: 1.6rem;
+        padding: 1.1rem 1.2rem 1.2rem;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-left: 2px solid var(--ink);
+      }
+      .proj__name {
+        font-family: var(--ff-sans);
+        font-weight: 600;
+        font-size: 1.04rem;
+        margin: 0;
+        line-height: 1.3;
+      }
+      .proj__stack {
+        font-family: var(--ff-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.02em;
+        color: var(--muted);
+        margin: 0.4rem 0 0.7rem;
+      }
+      .proj__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .proj__list li {
+        position: relative;
+        padding-left: 1.1rem;
+        font-family: var(--ff-tc);
+        font-size: 0.93rem;
+        line-height: 1.7;
+        color: var(--ink-2);
+        margin-top: 0.4rem;
+      }
+      .proj__list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.65em;
+        width: 5px;
+        height: 5px;
+        background: var(--spot);
+      }
+      em {
+        font-style: normal;
+        font-family: var(--ff-mono);
+        font-weight: 600;
+        color: var(--spot);
+        white-space: nowrap;
+      }
+      .earlier {
+        font-family: var(--ff-tc);
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin: 1.1rem 0 0;
+        padding-left: 0.2rem;
+      }
+
+      /* ---------- skills ---------- */
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+      @media (max-width: 720px) {
+        .skills {
+          grid-template-columns: 1fr;
+        }
+      }
+      .skill {
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 1rem 1.1rem 1.2rem;
+      }
+      .skill__cat {
+        font-family: var(--ff-mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--spot);
+        margin-bottom: 0.7rem;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .chip {
+        font-family: var(--ff-mono);
+        font-size: 0.74rem;
+        color: var(--ink-2);
+        border: 1px solid var(--line-strong);
+        border-radius: 4px;
+        padding: 0.25rem 0.55rem;
+        background: var(--paper);
+      }
+
+      /* ---------- two-up rows (edu / lang) ---------- */
+      .duo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(1.6rem, 5vw, 4rem);
+      }
+      @media (max-width: 720px) {
+        .duo {
+          grid-template-columns: 1fr;
+          gap: 2.4rem;
+        }
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .row:first-child {
+        border-top: 1px solid var(--line);
+      }
+      .row__main h4 {
+        margin: 0;
+        font-family: var(--ff-sans);
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      .row__main span {
+        font-family: var(--ff-tc);
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .row__when {
+        font-family: var(--ff-mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+        white-space: nowrap;
+        text-align: right;
+      }
+      .row__when b {
+        color: var(--spot);
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: block;
+      }
+
+      /* ---------- beyond / side projects ---------- */
+      .beyond__intro {
+        font-family: var(--ff-tc);
+        color: var(--ink-2);
+        max-width: 60ch;
+        margin: -0.6rem 0 1.8rem;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      @media (max-width: 720px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: var(--card);
+        padding: 1.1rem 1.2rem 1.3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: auto -20% -40% auto;
+        width: 60%;
+        height: 70%;
+        background-image: radial-gradient(var(--dither) 0.6px, transparent 0.7px);
+        background-size: 3px 3px;
+        opacity: 0.5;
+        -webkit-mask-image: radial-gradient(circle at bottom right, black, transparent 70%);
+        mask-image: radial-gradient(circle at bottom right, black, transparent 70%);
+        pointer-events: none;
+      }
+      .card__tag {
+        font-family: var(--ff-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--spot);
+      }
+      .card__name {
+        font-family: var(--ff-display);
+        font-weight: 600;
+        font-size: 1.15rem;
+        margin: 0.5rem 0 0.4rem;
+        position: relative;
+        z-index: 1;
+      }
+      .card__desc {
+        font-family: var(--ff-tc);
+        font-size: 0.9rem;
+        color: var(--ink-2);
+        margin: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ---------- contact / footer ---------- */
+      .contact {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+      .contact a,
+      .contact div {
+        background: var(--paper);
+        padding: 1.1rem 1.2rem;
+        display: block;
+        transition: background 0.2s;
+      }
+      .contact a:hover {
+        background: var(--spot-soft);
+      }
+      .contact dt {
+        font-family: var(--ff-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.35rem;
+      }
+      .contact dd {
+        margin: 0;
+        font-family: var(--ff-mono);
+        font-size: 0.9rem;
+        color: var(--ink);
+        word-break: break-word;
+      }
+      .contact a:hover dd {
+        color: var(--spot);
+      }
+      .foot {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.6rem;
+        padding-block: 2rem 2.6rem;
+        font-family: var(--ff-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .scan,
+        .status-dot {
+          animation: none;
+        }
+        .refresh--go {
+          animation: none;
+        }
+        * {
+          transition-duration: 0.001ms !important;
+        }
       }
     </style>
   </head>
 
   <body>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand">YI-CHI CHAO Resume</a>
-        </div>
-      </nav>
-      <div class="row mt-5">
-        <div class="col-sm-4">
-          <h2>趙奕錡</h2>
-          <h3 class="fw-bold">關於我</h3>
-          <blockquote class="blockquote">
-            <font face="標楷體">
-              <p>
-                我是趙奕錡，2020年7月畢業於中興大學資訊科學與工程學系碩士。從小，我就對電腦有極大的興趣，每當家人朋友在使用電腦上遇到問題，總喜歡找我幫忙，遇到我無法解決的問題，我會自己摸索，不斷嘗試，到處詢問，最後總能完美的達成任務。
-              </p>
-              <p>
-                平時時喜歡寫一些小程式來解決問題，平常玩遊戲時總會寫一些簡單的腳本協助我玩遊戲，之前因為chrome套件上的爬圖片程式在固定網站無法運作時，研究問題點並找出問題寫一支新的爬蟲來解決問等等，從中也學習到許多。
-              </p>
-              <p>
-                一直以來，積極面對、全力以赴是我做事的原則，不管面對多麼艱辛困難的工作，我都會盡可能想辦法解決。我喜歡思考問題，並提出解決問題的辦法，而在解決問題時，我享受從中獲得的成就感。
-              </p>
-            </font>
-          </blockquote>
+    <div class="refresh" id="refresh" aria-hidden="true"></div>
 
-          <div class="mt-5">
-            <img
-              src="https://lh3.googleusercontent.com/E5o_R3DY8VBUlXKAPkDWn058M2NgA1yaxjzseus74rc0eoSMDhHV3N9jxSdPAt1bm5oHnlQ3cGCjtHCxvTWy4jVtB-gIAKJymUQNpX3bRGJQew9ZSRGBhu_1On8z6diAsLVzVqBD=s36-p-k?source=screenshot.guru"
-              class="rounded float-start"
-              alt="https://lh3.googleusercontent.com/E5o_R3DY8VBUlXKAPkDWn058M2NgA1yaxjzseus74rc0eoSMDhHV3N9jxSdPAt1bm5oHnlQ3cGCjtHCxvTWy4jVtB-gIAKJymUQNpX3bRGJQew9ZSRGBhu_1On8z6diAsLVzVqBD=s36-p-k"
-            />
-            <h3 class="fw-bold">學歷</h3>
-            <h4 class="mt-3">中興大學 資訊工程學系 碩士</h4>
-            <h4 class="mt-3">東海大學 資訊工程學系 學士</h4>
+    <!-- ============ TOP BAR ============ -->
+    <header class="bar">
+      <div class="wrap bar__in">
+        <a class="brand" href="#top"
+          ><span class="sq"></span> <b>趙奕錡</b>&nbsp;YICHI&nbsp;CHAO</a
+        >
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Language">
+            <button id="lang-zh" aria-pressed="true">中</button>
+            <button id="lang-en" aria-pressed="false">EN</button>
           </div>
-          <div class="mt-5">
-            <img
-              src="https://lh3.googleusercontent.com/eKobV1AkTphgXi7o3oHpovjNnqfbPLiApOyCXRRPnd2LJRz4A6sR2EuQV3wV1DSPMKhL3KS0px1xOd1hfeSjIO4ZZp31baHHBmtfrRgqJsNySSACwiFCbnW1Gg_Pt7Q4T82EYzMA=s36-p-k?source=screenshot.guru"
-              class="rounded float-start"
-              alt="https://lh3.googleusercontent.com/eKobV1AkTphgXi7o3oHpovjNnqfbPLiApOyCXRRPnd2LJRz4A6sR2EuQV3wV1DSPMKhL3KS0px1xOd1hfeSjIO4ZZp31baHHBmtfrRgqJsNySSACwiFCbnW1Gg_Pt7Q4T82EYzMA=s36-p-k"
-            />
-            <h3 class="fw-bold">語言能力</h3>
-            <h4 class="mt-3">TOEIC <mark>795</mark></h4>
-            <h4 class="mt-3">日檢 <mark>N3</mark></h4>
+          <button class="iconbtn" id="theme" aria-label="切換日／夜模式 Toggle day / night">
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap" id="top">
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <div class="hero__lead">
+          <p class="hero__eyebrow">
+            <b>趙奕錡 · YICHI CHAO</b>
+            <span class="tick">/</span>
+            <span lang="zh">軟體工程師 · 全端工程師</span>
+            <span lang="en">Software Engineer · Full-Stack Engineer</span>
+          </p>
+
+          <h1 class="hero__title">
+            <span lang="zh"
+              >工業級 AI 系統，<span class="spot">從零打造</span>，送進沒有外網的產線。</span
+            >
+            <span lang="en"
+              >Industrial AI, built from <span class="spot">zero</span> — shipped to factory floors the internet can't reach.</span
+            >
+          </h1>
+
+          <p class="hero__traits">
+            <span lang="zh">積極 · 熱情 · 善於溝通 · 喜歡思考 · 團隊合作</span>
+            <span lang="en">Proactive · Passionate · Communicator · Analytical · Team player</span>
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--solid" href="mailto:timmy85618@gmail.com">
+              <span lang="zh">寄信給我 →</span><span lang="en">Email me →</span>
+            </a>
+            <a class="btn btn--ghost" href="https://github.com/Timmy0618" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
+
+          <ul class="specs">
+            <li>
+              <dt lang="zh">經驗</dt><dt lang="en">Experience</dt>
+              <dd>3+ <span lang="zh">年</span><span lang="en">yrs</span></dd>
+            </li>
+            <li>
+              <dt lang="zh">座標</dt><dt lang="en">Based in</dt>
+              <dd><span lang="zh">新竹</span><span lang="en">Hsinchu</span></dd>
+            </li>
+            <li>
+              <dt lang="zh">狀態</dt><dt lang="en">Status</dt>
+              <dd><span lang="zh">在職中</span><span lang="en">Employed</span></dd>
+            </li>
+            <li>
+              <dt lang="zh">役別</dt><dt lang="en">Military</dt>
+              <dd><span lang="zh">役畢</span><span lang="en">Done</span></dd>
+            </li>
+          </ul>
         </div>
 
-        <div class="col-sm-8">
-          <h2 class="fw-bold">經歷與作品</h2>
-          <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item mt-5">
-              <div class="accordion-item mt-5">
-                <h4 class="">碩論</h4>
-                <h2 class="accordion-header" id="flush-headingOne">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseOne"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseOne"
-                  >
-                    結合區塊鍊與屬性加密減輕IoT負擔之韌體更新方案
-                  </button>
-                </h2>
-                <div
-                  id="flush-collapseOne"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="flush-headingOne"
-                  data-bs-parent="#accordionFlushExample"
-                >
-                  <div class="accordion-body">
-                    透過屬性加密的特性，使伺服器只需要上傳一份韌體即可對所有IoT裝置進行更新，可以大幅減輕伺服器負擔以及物聯網裝置的運算力低下等問題。
-                  </div>
-                  <div>
-                    <img
-                      src="https://lh3.googleusercontent.com/UrLDrt7AKcavfpF9NPKUNDIzGu05-9MoZ_5VjSqY-OEC2dfEzFwWEM-R56oMFP8leHhSPemXfcOCI2wRKG_E04h8enXLOGxzCb-FP7ua2gFnLlWh1MTmYwAJTnZca7-Nm08AywKI=w2400?source=screenshot.guru"
-                      class="img-fluid"
-                      alt="https://lh3.googleusercontent.com/UrLDrt7AKcavfpF9NPKUNDIzGu05-9MoZ_5VjSqY-OEC2dfEzFwWEM-R56oMFP8leHhSPemXfcOCI2wRKG_E04h8enXLOGxzCb-FP7ua2gFnLlWh1MTmYwAJTnZca7-Nm08AywKI=w600-h315-p-k"
-                    />
-                  </div>
-                </div>
-              </div>
+        <!-- mock E-Ink defect-detection panel (his TM1 work) -->
+        <div class="panel" aria-hidden="true">
+          <div class="panel__scr"></div>
+          <div class="scan"></div>
+          <div class="panel__label mono">E-INK · DEFECT VIEW</div>
+          <div class="bbox" style="top: 22%; left: 16%; width: 26%; height: 30%;">
+            <span>defect · 0.98</span>
+          </div>
+          <div class="bbox" style="top: 54%; left: 58%; width: 22%; height: 20%;">
+            <span>particle · 0.91</span>
+          </div>
+          <div class="bbox" style="top: 16%; left: 64%; width: 14%; height: 12%;">
+            <span>edge · 0.87</span>
+          </div>
+          <div class="panel__meta mono">
+            <span>YOLO · ONNX · EDGE</span><span><b>● </b>INFER 14ms</span>
+          </div>
+        </div>
+      </section>
 
-              <div class="accordion-item mt-5">
-                <h4>科技部計畫</h4>
-                <h2 class="accordion-header" id="flush-headingTwo">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseTwo"
-                  >
-                    台電計畫
-                  </button>
-                </h2>
-                <div
-                  id="flush-collapseTwo"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="flush-headingTwo"
-                  data-bs-parent="#accordionFlushExample"
-                >
-                  <div class="accordion-body">
-                    <li class="mt-3">第一年</li>
-                    <p>
-                      製作三層式架構的無線韌體更新，使無法上網的智慧電表可以符合IEC62056
-                      Security Suite1安全規範進行安全的無線韌體更新
-                    </p>
-                    <div>
-                      <img
-                        src="https://lh3.googleusercontent.com/wdZWLXHmRQXvlBxT9fnYBDvHWx3n7aNf2GkGl_9Nb8Ed5goTTCowc7Kh8gI2GlSsVf1acTwHiK4iQk4ekxwA9McJcnpLmv1eW0G3lGynIuM8r-UepoQWR_nRnY4-hkREKr8eLls2=w2400?source=screenshot.guru"
-                        class="img-fluid"
-                        alt="https://lh3.googleusercontent.com/wdZWLXHmRQXvlBxT9fnYBDvHWx3n7aNf2GkGl_9Nb8Ed5goTTCowc7Kh8gI2GlSsVf1acTwHiK4iQk4ekxwA9McJcnpLmv1eW0G3lGynIuM8r-UepoQWR_nRnY4-hkREKr8eLls2=w600-h315-p-k"
-                      />
-                    </div>
-                    <li class="mt-5">第二年</li>
-                    <p>
-                      由於電表運算加解密時十分耗時，使用廠商提供之加解密晶片與電表結合，解決加解密耗時等問題。
-                    </p>
-                    <div>
-                      <img
-                        src="https://lh3.googleusercontent.com/kdtJkDQFrPx67l16sb2JyVIs1pSgbAXKxWRaaA0wWmCs3XVbYfglhfO3cByulro1o0Bx2_rfTUW3ETEQWz-kZNL1QUJcz7NbFOLRKLWapXaAMVqy65v_ZrdPXLvGKUwLxhputF2u=w2400?source=screenshot.guru"
-                        class="img-fluid"
-                        alt="https://lh3.googleusercontent.com/kdtJkDQFrPx67l16sb2JyVIs1pSgbAXKxWRaaA0wWmCs3XVbYfglhfO3cByulro1o0Bx2_rfTUW3ETEQWz-kZNL1QUJcz7NbFOLRKLWapXaAMVqy65v_ZrdPXLvGKUwLxhputF2u=w600-h315-p-k"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <!-- ============ 01 EXPERIENCE ============ -->
+      <section class="sec" id="experience">
+        <div class="sec__head">
+          <span class="sec__idx">01</span>
+          <h2 class="sec__title">
+            <span lang="zh">工作經驗</span><span lang="en">Experience</span>
+            <small>Experience</small>
+          </h2>
+        </div>
 
-              <div class="accordion-item mt-5">
-                <h4>專題報告</h4>
-                <h2 class="accordion-header" id="flush-headingThree">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseThree"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseThree"
-                  >
-                    影像辨識
-                  </button>
-                </h2>
-                <div
-                  id="flush-collapseThree"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="flush-headingThree"
-                  data-bs-parent="#accordionFlushExample"
-                >
-                  <div class="accordion-body">
-                    由於opencv無法辨識人臉側面，所以透過SVM訓練各種側面角度的人臉，進行臉部辨識。
-                  </div>
-                  <div>
-                    <img
-                      src="https://lh3.googleusercontent.com/TbT6xO3mgBjfuNJ6GAP1oCpbz-r4U6eyijvtt67v2VSF1DUzawk7aeOmK2ydlz38-bM_N02h-oR5i-ES6j4neHTpqEdz_zmqeWet0ewa_Rgsv0N2C6ByY0zXMLQ1CaWcB89FWRMR=w2400?source=screenshot.guru"
-                      class="img-fluid"
-                      alt="https://lh3.googleusercontent.com/TbT6xO3mgBjfuNJ6GAP1oCpbz-r4U6eyijvtt67v2VSF1DUzawk7aeOmK2ydlz38-bM_N02h-oR5i-ES6j4neHTpqEdz_zmqeWet0ewa_Rgsv0N2C6ByY0zXMLQ1CaWcB89FWRMR=w600-h315-p-k"
-                    />
-                  </div>
-                </div>
-              </div>
+        <!-- E Ink -->
+        <article class="job">
+          <div class="job__head">
+            <h3 class="job__co">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span lang="zh">元太科技 E Ink</span><span lang="en">E Ink Holdings</span>
+            </h3>
+            <span class="job__when">
+              <span lang="zh">光電業 500+ · 新竹 · 2022/9 – 在職中</span>
+              <span lang="en">Optoelectronics 500+ · Hsinchu · Sep 2022 – Present</span>
+            </span>
+          </div>
+          <p class="job__role">
+            <span lang="zh">軟體工程師</span><span lang="en">Software Engineer</span>
+          </p>
+          <p class="job__intro">
+            <span lang="zh">主導多個工業 AI 與基礎設施專案，從架構、開發到部署維運完整負責。</span>
+            <span lang="en">Led multiple industrial-AI and infrastructure projects end to end — architecture, build, deploy, and ops.</span>
+          </p>
 
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingFour">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseFour"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseFour"
-                  >
-                    空氣品質預測於Windy展現
-                  </button>
-                </h2>
-                <div
-                  id="flush-collapseFour"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="flush-headingFour"
-                  data-bs-parent="#accordionFlushExample"
-                >
-                  <div class="accordion-body">
-                    使用Pyhon訓練PM2.5預測模型，並在Windy api 上面使用 Django
-                    將預測結果呈於網頁。
-                  </div>
-                  <div>
-                    <img
-                      src="https://lh3.googleusercontent.com/w0dro1GpVkeerDbBbWP-L3DjxDme9MGXgqq1tpGfeTSv6cSmT43cgur-Kc320JIXUhqUiurYkk2n4St_Cw8zeqTHIWSoO17Z8p7r57c2oFIaoWq0nij_NdJr5kxmvubd4fCpEiKn=w2400?source=screenshot.guru"
-                      class="img-fluid"
-                      alt="https://lh3.googleusercontent.com/w0dro1GpVkeerDbBbWP-L3DjxDme9MGXgqq1tpGfeTSv6cSmT43cgur-Kc320JIXUhqUiurYkk2n4St_Cw8zeqTHIWSoO17Z8p7r57c2oFIaoWq0nij_NdJr5kxmvubd4fCpEiKn=w550-h315-p-k"
-                    />
-                  </div>
-                  <div>
-                    <img
-                      src="https://lh3.googleusercontent.com/nqnEKhZGP3PQqk2RfxFWkW7FzNZVXD72l57aKcQ5NkpFziLbUMTiJkcSF3PufX3oK_C0kenkPbexkkAJnFOwl90fLnTt9FuWsLZe8Wqh2VlbYXxSS1MXfik9aBWOoiqTkUXgsLH9=w2400?source=screenshot.guru"
-                      class="img-fluid"
-                      alt="https://lh3.googleusercontent.com/nqnEKhZGP3PQqk2RfxFWkW7FzNZVXD72l57aKcQ5NkpFziLbUMTiJkcSF3PufX3oK_C0kenkPbexkkAJnFOwl90fLnTt9FuWsLZe8Wqh2VlbYXxSS1MXfik9aBWOoiqTkUXgsLH9=w600-h314-p-k"
-                    />
-                  </div>
-                </div>
-              </div>
+          <div class="proj">
+            <h4 class="proj__name">
+              <span lang="zh">面板瑕疵檢測與切割排版系統</span>
+              <span lang="en">Panel defect detection & cutting-layout system</span>
+            </h4>
+            <p class="proj__stack mono">
+              React 19 · FastAPI · ONNX/YOLO · Redis(ARQ) · PostgreSQL · SeaweedFS · Docker
+            </p>
+            <ul class="proj__list">
+              <li>
+                <span lang="zh">設計 Frontend / Backend / Edge 多服務架構，將 YOLO/ONNX 推論下放廠端 edge、雲端後端保持 inference-free，符合資料不出廠並降低負載。</span>
+                <span lang="en">Designed a Frontend / Backend / Edge architecture — YOLO/ONNX inference on the on-prem edge, cloud backend kept inference-free so data never leaves the factory.</span>
+              </li>
+              <li>
+                <span lang="zh">以 FastAPI + ARQ(Redis) 建非同步任務佇列，將切割最佳化與偵測評估等長任務與 API 解耦；整合 OpCut / rectpack 自動產生切割佈局。</span>
+                <span lang="en">Built FastAPI + ARQ (Redis) async queues to decouple cutting-optimization and evaluation jobs from the API; integrated OpCut / rectpack auto-layout.</span>
+              </li>
+              <li>
+                <span lang="zh">打造 React 19 + React Router 7 + Tailwind 4 內部 SPA，雙軌認證 LDAP/AD→JWT 與 X-API-Key，以 Docker Compose + GitHub Actions 部署。</span>
+                <span lang="en">Shipped a React 19 + React Router 7 + Tailwind 4 internal SPA with dual-track auth (LDAP/AD→JWT, X-API-Key) via Docker Compose + GitHub Actions.</span>
+              </li>
+            </ul>
+          </div>
 
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingFive">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseFive"
-                    aria-expanded="false"
-                    aria-controls="flush-collapseFive"
-                  >
-                    改善Adaptive Inddexing over Encrpyted Numeric Data
-                  </button>
-                </h2>
-                <div
-                  id="flush-collapseFive"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="flush-headingFive"
-                  data-bs-parent="#accordionFlushExample"
-                >
-                  <div class="accordion-body">
-                    使用分散儲存的概念，讓使用者只須上傳部分加密Data即可提升原始論文的安全性。
-                  </div>
-                  <div>
-                    <img
-                      src="https://lh3.googleusercontent.com/COb2BOji2Up85CfmeI5sNk6-2IuBn95Brw3wy6vsGsVFNc4w08xw0XUwx2j6sKNqtV6o_Pj2OxuOX-NCNpeQ_evFoeOD92qwCLXrV2FCsTonFTZ6MvMeOqUiArMfXanv9fmb7ZYp=w2400?source=screenshot.guru"
-                      class="img-fluid"
-                      alt="https://lh3.googleusercontent.com/COb2BOji2Up85CfmeI5sNk6-2IuBn95Brw3wy6vsGsVFNc4w08xw0XUwx2j6sKNqtV6o_Pj2OxuOX-NCNpeQ_evFoeOD92qwCLXrV2FCsTonFTZ6MvMeOqUiArMfXanv9fmb7ZYp=w600-h315-p-k"
-                    />
-                  </div>
-                </div>
-              </div>
+          <div class="proj">
+            <h4 class="proj__name">
+              <span lang="zh">材料剖面影像 AI 量測平台</span>
+              <span lang="en">Material cross-section AI measurement platform</span>
+            </h4>
+            <p class="proj__stack mono">
+              Python · FastAPI · YOLO + SAM2 · APScheduler · SeaweedFS · React Router 7
+            </p>
+            <ul class="proj__list">
+              <li>
+                <span lang="zh">自動從 SMB 網路磁碟擷取剖面影像，串接 YOLO + SAM2 推論管線，自動裁切、量測尺寸並萃取工程數據。</span>
+                <span lang="en">Ingested cross-section images from SMB drives through a YOLO + SAM2 pipeline that auto-crops, measures, and extracts engineering data.</span>
+              </li>
+              <li>
+                <span lang="zh">以 APScheduler 設計背景排程（擷取→推論→裁切→量測→上傳），採 In-memory 影像處理與 Sync/Async 雙引擎隔離降低 I/O 衝突。</span>
+                <span lang="en">Built APScheduler workflows (ingest→infer→crop→measure→upload) with in-memory processing and sync/async dual-engine isolation.</span>
+              </li>
+              <li>
+                <span lang="zh">規劃邊緣解耦架構（Worker 僅以 HTTP 回傳），支援 PostgreSQL / Oracle / MySQL 多後端並以 MLflow 管理模型版本。</span>
+                <span lang="en">Designed an edge-decoupled architecture (workers return via HTTP only) across PostgreSQL / Oracle / MySQL, with MLflow model versioning.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="proj">
+            <h4 class="proj__name">
+              <span lang="zh">自托管 CI/CD + MLOps 基礎設施（內網 air-gapped）</span>
+              <span lang="en">Self-hosted CI/CD + MLOps platform (air-gapped)</span>
+            </h4>
+            <p class="proj__stack mono">
+              Docker Compose · Traefik v3 · SeaweedFS · Gitea Actions · Jenkins(JCasC) · MLflow
+            </p>
+            <ul class="proj__list">
+              <li>
+                <span lang="zh">於無外網環境從零整合 10+ 服務；以 SeaweedFS 建 S3 相容分散式儲存叢集，統一承載 LFS / Registry / artifacts / DVC 並跨 VM 擴充。</span>
+                <span lang="en">Integrated 10+ services from scratch with no internet; built an S3-compatible SeaweedFS cluster backing Git LFS, Registry, artifacts, and DVC across VMs.</span>
+              </li>
+              <li>
+                <span lang="zh">以 Traefik v3 取代 nginx（動態路由 + 多 entrypoint TLS），設計四層網段隔離與 IAM / BasicAuth 存取控制。</span>
+                <span lang="en">Replaced nginx with Traefik v3 (dynamic routing + multi-entrypoint TLS) and designed 4-layer network segmentation with IAM / BasicAuth.</span>
+              </li>
+              <li>
+                <span lang="zh">撰寫 Bash 一鍵部署腳本、Jenkins 以 JCasC 宣告式設定，並以內網 Nexus proxy 解決離線安裝。</span>
+                <span lang="en">Automated one-command Bash deploys, declarative Jenkins via JCasC, and offline installs through an internal Nexus proxy.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="proj">
+            <h4 class="proj__name">
+              <span lang="zh">企業內部 LLM 服務與 AutoML 導入</span>
+              <span lang="en">Internal LLM service & AutoML adoption</span>
+            </h4>
+            <p class="proj__stack mono">LLM Serving · RAG · IBM watsonx · AutoML</p>
+            <ul class="proj__list">
+              <li>
+                <span lang="zh">架設企業內部 LLM 服務供全公司使用，統一對話與文件問答介面，資料留在內網、降低各部門導入 AI 的門檻。</span>
+                <span lang="en">Stood up a company-wide internal LLM service (unified chat + document Q&A, data on-prem), lowering the bar for AI adoption across teams.</span>
+              </li>
+              <li>
+                <span lang="zh">導入 IBM watsonx AutoML，讓非技術同仁以低程式碼方式快速建立與評估預測模型。</span>
+                <span lang="en">Adopted IBM watsonx AutoML so non-technical staff could build and evaluate predictive models via a low-code workflow.</span>
+              </li>
+            </ul>
+          </div>
+
+          <p class="earlier">
+            <span lang="zh">早期：導入材料生產自動化與監控、建立 AI 預測模型，<em>節省 50% 監控人力</em>；以 AI 取代傳統 AOI 進行缺陷分類。</span>
+            <span lang="en">Earlier: material-production automation & monitoring with AI models (<em>−50% monitoring time</em>); replaced traditional AOI with AI defect detection.</span>
+          </p>
+        </article>
+
+        <!-- PChome -->
+        <article class="job">
+          <div class="job__head">
+            <h3 class="job__co">
+              <span lang="zh">網路家庭 PChome</span><span lang="en">PChome Online</span>
+            </h3>
+            <span class="job__when">
+              <span lang="zh">網際網路業 500+ · 台北大安 · 2021/4 – 2022/5</span>
+              <span lang="en">Internet 500+ · Daan, Taipei · Apr 2021 – May 2022</span>
+            </span>
+          </div>
+          <p class="job__role">
+            <span lang="zh">全端工程師 · 1 年 2 個月</span><span lang="en">Full-Stack Engineer · 1 yr 2 mo</span>
+          </p>
+
+          <div class="proj">
+            <p class="proj__stack mono" style="margin-top: 0">
+              PHP · Vue.js · MySQL · MSSQL · Docker · JavaScript
+            </p>
+            <ul class="proj__list">
+              <li>
+                <span lang="zh">設計並實作最佳揀貨路徑演算法，縮短倉庫揀貨時間，<em>節省 40% 反應時間</em>。</span>
+                <span lang="en">Designed an optimal picking-route algorithm that shortened warehouse picking time — <em>−40% response time</em>.</span>
+              </li>
+              <li>
+                <span lang="zh">開發智能裝箱演算法，多筆訂單時自動產生最佳裝箱方案，<em>節省 50% 反應時間</em>。</span>
+                <span lang="en">Built a smart bin-packing algorithm generating optimal packing plans for multi-order batches — <em>−50% response time</em>.</span>
+              </li>
+              <li>
+                <span lang="zh">設計多個 API 與 DB Schema，提供貨主彈性的倉庫系統接口（進貨／出貨／庫存／客退）。</span>
+                <span lang="en">Designed multiple APIs and DB schemas, giving merchants a flexible warehouse interface (inbound / outbound / inventory / returns).</span>
+              </li>
+              <li>
+                <span lang="zh">以 Docker 建置 PHP / MySQL / Apache / MSSQL / phpMyAdmin 開發環境，統一團隊開發框架。</span>
+                <span lang="en">Built Docker dev environments (PHP / MySQL / Apache / MSSQL / phpMyAdmin) for a consistent team setup.</span>
+              </li>
+              <li>
+                <span lang="zh">以 PHP 開發 Telegram Bot 即時監控倉庫現場、異常即時通知，提高應急反應速度。</span>
+                <span lang="en">Built a PHP Telegram bot for real-time warehouse monitoring with instant anomaly alerts.</span>
+              </li>
+              <li>
+                <span lang="zh">以 Vue.js 開發多個倉庫系統前端界面與功能，提升使用體驗與可維護性。</span>
+                <span lang="en">Shipped multiple Vue.js warehouse frontends, improving UX and maintainability.</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ 02 SKILLS ============ -->
+      <section class="sec" id="skills">
+        <div class="sec__head">
+          <span class="sec__idx">02</span>
+          <h2 class="sec__title">
+            <span lang="zh">技術能力</span><span lang="en">Technical Skills</span>
+            <small>Stack</small>
+          </h2>
+        </div>
+        <div class="skills">
+          <div class="skill">
+            <div class="skill__cat"><span lang="zh">語言</span><span lang="en">Languages</span></div>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">Bash</span><span class="chip">SQL</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat"><span lang="zh">後端</span><span lang="en">Backend</span></div>
+            <div class="chips">
+              <span class="chip">FastAPI</span><span class="chip">Node.js</span><span class="chip">SQLModel</span><span class="chip">SQLAlchemy</span><span class="chip">Alembic</span><span class="chip">Redis + ARQ</span><span class="chip">APScheduler</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat"><span lang="zh">前端</span><span lang="en">Frontend</span></div>
+            <div class="chips">
+              <span class="chip">React 19</span><span class="chip">React Router 7</span><span class="chip">Vue.js</span><span class="chip">Tailwind CSS</span><span class="chip">Vite</span><span class="chip">jQuery</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat">AI / ML</div>
+            <div class="chips">
+              <span class="chip">YOLO</span><span class="chip">SAM2</span><span class="chip">ONNX Runtime</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">OpenCV</span><span class="chip">MLflow</span><span class="chip">DVC</span><span class="chip">IBM watsonx</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat"><span lang="zh">資料庫</span><span lang="en">Databases</span></div>
+            <div class="chips">
+              <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MSSQL</span><span class="chip">Oracle</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat">DevOps / Infra</div>
+            <div class="chips">
+              <span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Traefik</span><span class="chip">Gitea Actions</span><span class="chip">Jenkins (JCasC)</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat"><span lang="zh">儲存 / 網路</span><span lang="en">Storage / Network</span></div>
+            <div class="chips">
+              <span class="chip">SeaweedFS</span><span class="chip">S3 / MinIO</span><span class="chip">Object Storage</span><span class="chip">TLS</span><span class="chip">Network Segmentation</span><span class="chip">LDAP / JWT</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat"><span lang="zh">其他</span><span lang="en">Other</span></div>
+            <div class="chips">
+              <span class="chip">Git</span><span class="chip">Linux</span><span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">Microservices</span><span class="chip">Edge Inference</span>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <!-- ============ 03 EDUCATION + LANGUAGES ============ -->
+      <section class="sec" id="education">
+        <div class="sec__head">
+          <span class="sec__idx">03</span>
+          <h2 class="sec__title">
+            <span lang="zh">學歷與語言</span><span lang="en">Education & Languages</span>
+            <small>Background</small>
+          </h2>
+        </div>
+        <div class="duo">
+          <div>
+            <div class="row">
+              <div class="row__main">
+                <h4><span lang="zh">國立中興大學</span><span lang="en">Chung Hsing University</span></h4>
+                <span lang="zh">資訊工程與科學 · 碩士</span><span lang="en">M.S., Computer Science & Engineering</span>
+              </div>
+              <div class="row__when">2018/8<br />– 2020/8</div>
+            </div>
+            <div class="row">
+              <div class="row__main">
+                <h4><span lang="zh">東海大學</span><span lang="en">Tunghai University</span></h4>
+                <span lang="zh">資訊工程學系 · 學士</span><span lang="en">B.S., Computer Science & Engineering</span>
+              </div>
+              <div class="row__when">2014/9<br />– 2018/6</div>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="row__main">
+                <h4><span lang="zh">英文</span><span lang="en">English</span></h4>
+                <span lang="zh">聽說讀寫中等</span><span lang="en">Intermediate · all-round</span>
+              </div>
+              <div class="row__when"><b>TOEIC</b>795</div>
+            </div>
+            <div class="row">
+              <div class="row__main">
+                <h4><span lang="zh">日文</span><span lang="en">Japanese</span></h4>
+                <span lang="zh">讀寫聽中等、說略懂</span><span lang="en">Intermediate reading / writing</span>
+              </div>
+              <div class="row__when"><b>JLPT</b>N3</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 04 BEYOND ============ -->
+      <section class="sec" id="beyond">
+        <div class="sec__head">
+          <span class="sec__idx">04</span>
+          <h2 class="sec__title">
+            <span lang="zh">工作之外</span><span lang="en">Beyond the day job</span>
+            <small>Side quests</small>
+          </h2>
+        </div>
+        <p class="beyond__intro">
+          <span lang="zh">對 AI 應用高度熱忱——自費購入一台 GB10 作為個人 AI 工作站，持續探索本地 LLM 與 Agent 應用，並打造各種 side project。</span>
+          <span lang="en">Deeply into AI applications — I self-funded a GB10 as a personal AI workstation to explore local LLMs and agents, and keep shipping side projects.</span>
+        </p>
+        <div class="cards">
+          <div class="card">
+            <div class="card__tag">Hardware · Self-host</div>
+            <h3 class="card__name">GB10 AI Workstation</h3>
+            <p class="card__desc">
+              <span lang="zh">自架 OpenClaw / Hermes，作為本地 LLM 與 Agent 的實驗場。</span>
+              <span lang="en">Self-hosting OpenClaw / Hermes as a local LLM & agent playground.</span>
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__tag">Side Project</div>
+            <h3 class="card__name"><span lang="zh">AI 自動剪輯</span><span lang="en">AI Auto-Editor</span></h3>
+            <p class="card__desc">
+              <span lang="zh">一套自動剪輯、產出影片的工具管線。</span>
+              <span lang="en">A pipeline that cuts and edits video automatically.</span>
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__tag">Agents</div>
+            <h3 class="card__name"><span lang="zh">AI 虛擬小鎮</span><span lang="en">AI Virtual Town</span></h3>
+            <p class="card__desc">
+              <span lang="zh">多個 AI 角色在其中自主生活、互動與遊玩。</span>
+              <span lang="en">Multiple AI characters that live, interact, and play autonomously.</span>
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__tag">For Fun</div>
+            <h3 class="card__name"><span lang="zh">鏈上與遊戲</span><span lang="en">On-chain & Games</span></h3>
+            <p class="card__desc">
+              <span lang="zh">NFT 智能合約部署、Unity 2D 小遊戲，並每日刷 LeetCode 保持手感。</span>
+              <span lang="en">NFT smart contracts, Unity 2D games, and daily LeetCode to stay sharp.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 05 CONTACT ============ -->
+      <section class="sec" id="contact">
+        <div class="sec__head">
+          <span class="sec__idx">05</span>
+          <h2 class="sec__title">
+            <span lang="zh">聯絡方式</span><span lang="en">Get in touch</span>
+            <small>Contact</small>
+          </h2>
+        </div>
+        <dl class="contact">
+          <a href="mailto:timmy85618@gmail.com">
+            <dt>Email</dt>
+            <dd>timmy85618@gmail.com</dd>
+          </a>
+          <a href="https://github.com/Timmy0618" target="_blank" rel="noopener">
+            <dt>GitHub</dt>
+            <dd>github.com/Timmy0618</dd>
+          </a>
+          <div>
+            <dt><span lang="zh">地點</span><span lang="en">Location</span></dt>
+            <dd><span lang="zh">新竹市東區</span><span lang="en">Hsinchu, TW</span></dd>
+          </div>
+        </dl>
+      </section>
+
+      <footer class="foot">
+        <span>© 2021 – <span id="yr"></span> 趙奕錡 · YICHI CHAO</span>
+        <span><span lang="zh">在職中 · 可洽談機會</span><span lang="en">Employed · open to opportunities</span></span>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        document.getElementById("yr").textContent = new Date().getFullYear();
+
+        function store(k, v) {
+          try {
+            localStorage.setItem(k, v);
+          } catch (e) {}
+        }
+        function load(k) {
+          try {
+            return localStorage.getItem(k);
+          } catch (e) {
+            return null;
+          }
+        }
+
+        /* ---- theme (default light / day) ---- */
+        var savedTheme = load("resume-theme");
+        if (savedTheme === "dark" || savedTheme === "light") {
+          root.dataset.theme = savedTheme;
+        } // else keep markup default = light
+
+        var refresh = document.getElementById("refresh");
+        document.getElementById("theme").addEventListener("click", function () {
+          var next = root.dataset.theme === "dark" ? "light" : "dark";
+          if (!reduce) {
+            refresh.classList.remove("refresh--go");
+            void refresh.offsetWidth; // restart animation
+            refresh.classList.add("refresh--go");
+          }
+          root.dataset.theme = next;
+          store("resume-theme", next);
+        });
+
+        /* ---- language (default zh) ---- */
+        var zhBtn = document.getElementById("lang-zh");
+        var enBtn = document.getElementById("lang-en");
+
+        function setLang(lang) {
+          root.dataset.lang = lang;
+          root.setAttribute("lang", lang === "en" ? "en" : "zh-Hant");
+          zhBtn.setAttribute("aria-pressed", String(lang === "zh"));
+          enBtn.setAttribute("aria-pressed", String(lang === "en"));
+          store("resume-lang", lang);
+        }
+
+        var savedLang = load("resume-lang");
+        if (savedLang === "en" || savedLang === "zh") setLang(savedLang);
+
+        zhBtn.addEventListener("click", function () {
+          setLang("zh");
+        });
+        enBtn.addEventListener("click", function () {
+          setLang("en");
+        });
+      })();
+    </script>
   </body>
 </html>
