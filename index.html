@@ -268,19 +268,38 @@
       .hero__title {
         font-family: var(--ff-display);
         font-weight: 700;
-        font-size: clamp(2.3rem, 5.6vw, 4.3rem);
-        line-height: 1.04;
-        letter-spacing: -0.01em;
+        font-size: clamp(3rem, 8vw, 5.4rem);
+        line-height: 1;
+        letter-spacing: 0.02em;
         margin: 0;
-        max-width: 16ch;
-        text-wrap: balance;
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.2rem 1rem;
       }
-      .hero__title .spot {
+      .hero__rom {
+        font-family: var(--ff-mono);
+        font-weight: 500;
+        font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+        letter-spacing: 0.22em;
+        color: var(--muted);
+        align-self: center;
+      }
+      .hero__summary {
+        font-family: var(--ff-tc);
+        font-size: clamp(1rem, 1.5vw, 1.12rem);
+        line-height: 1.75;
+        color: var(--ink-2);
+        max-width: 44ch;
+        margin: 1.4rem 0 0;
+      }
+      .hero__summary b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .hero__summary .spot {
         color: var(--spot);
-      }
-      html[data-lang="zh"] .hero__title {
-        line-height: 1.18;
-        letter-spacing: 0.01em;
+        font-weight: 600;
       }
       .hero__traits {
         font-family: var(--ff-mono);
@@ -855,20 +874,23 @@
       <section class="hero">
         <div class="hero__lead">
           <p class="hero__eyebrow">
-            <b>趙奕錡 · YICHI CHAO</b>
-            <span class="tick">/</span>
+            <span class="tick">●</span>
             <span lang="zh">軟體工程師 · 全端工程師</span>
             <span lang="en">Software Engineer · Full-Stack Engineer</span>
           </p>
 
           <h1 class="hero__title">
+            趙奕錡<span class="hero__rom">YICHI&nbsp;CHAO</span>
+          </h1>
+
+          <p class="hero__summary">
             <span lang="zh"
-              >工業級 AI 系統，<span class="spot">從零打造</span>，送進沒有外網的產線。</span
+              >具備 <b>3+ 年</b>經驗的全端工程師，擅長在無外網的工廠環境，從零打造<span class="spot">工業級 AI 系統</span>與自托管 CI/CD、儲存基礎設施。</span
             >
             <span lang="en"
-              >Industrial AI, built from <span class="spot">zero</span> — shipped to factory floors the internet can't reach.</span
+              >Full-stack engineer with <b>3+ years</b> of experience, building <span class="spot">industrial-grade AI systems</span> and self-hosted CI/CD &amp; storage infrastructure from scratch — even in air-gapped factories.</span
             >
-          </h1>
+          </p>
 
           <p class="hero__traits">
             <span lang="zh">積極 · 熱情 · 善於溝通 · 喜歡思考 · 團隊合作</span>
