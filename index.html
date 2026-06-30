@@ -828,6 +828,15 @@
         position: relative;
         z-index: 1;
       }
+      .card__stack {
+        font-family: var(--ff-mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.01em;
+        color: var(--muted);
+        margin: 0 0 0.55rem;
+        position: relative;
+        z-index: 1;
+      }
       .card__desc {
         font-family: var(--ff-tc);
         font-size: 0.9rem;
@@ -1429,19 +1438,21 @@ flowchart TB
             </p>
           </div>
           <div class="card">
-            <div class="card__tag">Side Project</div>
-            <h3 class="card__name"><span lang="zh">AI 自動剪輯</span><span lang="en">AI Auto-Editor</span></h3>
+            <div class="card__tag">Side Project · Media</div>
+            <h3 class="card__name"><span lang="zh">AI 自動剪輯（Auto-Clip）</span><span lang="en">Auto-Clip</span></h3>
+            <p class="card__stack">Python · vLLM(Qwen) · faster-whisper · ffmpeg · FastAPI · React</p>
             <p class="card__desc">
-              <span lang="zh">一套自動剪輯、產出影片的工具管線。</span>
-              <span lang="en">A pipeline that cuts and edits video automatically.</span>
+              <span lang="zh">把授權的 YouTube 直播 VOD 自動轉成附繁中字幕的精華短影音（16:9 + 9:16 Shorts）。核心是<b>可斷點續跑的狀態機 pipeline</b>，融合聊天密度／heatmap／音訊能量三訊號挑候選；全程在本機 GPU + 本地 LLM 運行、<b>零雲端成本</b>，並有人在迴路的審核閉環可只重算單一片段。約 6.4k 行 Python/TS。</span>
+              <span lang="en">Turns licensed YouTube live VODs into highlight shorts (16:9 + 9:16) with zh-TW subtitles. A <b>resumable state-machine pipeline</b> fuses three signals (chat density / heatmap / audio energy) to pick candidates; runs entirely on a local GPU + local LLM at <b>zero cloud cost</b>, with a human-in-the-loop review loop that recomputes a single clip at a time. ~6.4k lines of Python/TS.</span>
             </p>
           </div>
           <div class="card">
-            <div class="card__tag">Agents</div>
+            <div class="card__tag">Agents · LLM</div>
             <h3 class="card__name"><span lang="zh">AI 虛擬小鎮</span><span lang="en">AI Virtual Town</span></h3>
+            <p class="card__stack">Python · FastAPI · LiteLLM · vLLM(Qwen 35B) · React 19</p>
             <p class="card__desc">
-              <span lang="zh">多個 AI 角色在其中自主生活、互動與遊玩。</span>
-              <span lang="en">Multiple AI characters that live, interact, and play autonomously.</span>
+              <span lang="zh">由 LLM 自主驅動的開放世界 RPG：角色不是腳本 NPC，而是各有人格、記憶與目標的 agent，在共享世界裡自行行動互動。設計 <b>World Engine 中央仲裁架構</b>（角色只輸出 Intent、由 adjudicator 決定結果），自架本地 vLLM 推論<b>加速約 20×</b>，並建立可回歸測試的世界活性評鑑 rubric，把「世界有沒有活起來」變成可量化指標。</span>
+              <span lang="en">An LLM-driven open-world RPG where characters aren't scripted NPCs but agents with their own persona, memory, and goals. Built a <b>central World Engine arbitration architecture</b> (characters emit only "intent"; an adjudicator resolves outcomes), self-hosted local vLLM for <b>~20× faster inference</b>, and a regression-testable rubric that turns "is the world alive?" into a measurable metric.</span>
             </p>
           </div>
           <div class="card">
