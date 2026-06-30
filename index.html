@@ -632,6 +632,62 @@
         padding-left: 0.2rem;
       }
 
+      /* ---------- architecture diagrams ---------- */
+      .diag {
+        margin-top: 1rem;
+        border-top: 1px dashed var(--line-strong);
+      }
+      .diag > summary {
+        cursor: pointer;
+        list-style: none;
+        font-family: var(--ff-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: 0.7rem 0 0.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.2s;
+      }
+      .diag > summary::-webkit-details-marker {
+        display: none;
+      }
+      .diag > summary::before {
+        content: "▸";
+        color: var(--spot);
+        transition: transform 0.2s;
+      }
+      .diag[open] > summary::before {
+        transform: rotate(90deg);
+      }
+      .diag > summary:hover {
+        color: var(--ink);
+      }
+      .diag__canvas {
+        overflow-x: auto;
+        padding: 0.9rem 0 0.3rem;
+      }
+      .mermaid {
+        margin: 0;
+        text-align: center;
+        font-family: var(--ff-mono);
+        line-height: normal;
+        min-height: 1px;
+      }
+      .mermaid:not([data-processed]) {
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+      .mermaid svg {
+        max-width: 100%;
+        height: auto;
+      }
+      .mermaid .edgeLabel {
+        font-size: 0.92em;
+      }
+
       /* ---------- skills ---------- */
       .skills {
         display: grid;
@@ -976,92 +1032,211 @@
 
           <div class="proj">
             <h4 class="proj__name">
-              <span lang="zh">面板瑕疵檢測與切割排版系統</span>
-              <span lang="en">Panel defect detection & cutting-layout system</span>
+              <span lang="zh">TM1 Auto Layout — 面板瑕疵檢測與切割排版系統</span>
+              <span lang="en">TM1 Auto Layout — Panel defect detection & cutting-layout system</span>
             </h4>
             <p class="proj__stack mono">
-              React 19 · FastAPI · ONNX/YOLO · Redis(ARQ) · PostgreSQL · SeaweedFS · Docker
+              React 19 · React Router 7 · FastAPI · ONNX/YOLO · ARQ(Redis) · PostgreSQL · SeaweedFS · Docker
             </p>
             <ul class="proj__list">
               <li>
-                <span lang="zh">設計 Frontend / Backend / Edge 多服務架構，將 YOLO/ONNX 推論下放廠端 edge、雲端後端保持 inference-free，符合資料不出廠並降低負載。</span>
-                <span lang="en">Designed a Frontend / Backend / Edge architecture — YOLO/ONNX inference on the on-prem edge, cloud backend kept inference-free so data never leaves the factory.</span>
+                <span lang="zh">設計 Frontend / Backend / Edge / 部署 stack 四服務分離架構，將 YOLO/ONNX 推論下放廠端 on-prem edge、雲端後端保持 <em>inference-free</em>，符合資料不出廠限制並降低後端負載。</span>
+                <span lang="en">Architected a four-service split (Frontend / Backend / Edge / deploy stack) — YOLO/ONNX inference runs on the on-prem edge while the cloud backend stays <em>inference-free</em>, so data never leaves the factory and backend load drops.</span>
               </li>
               <li>
-                <span lang="zh">以 FastAPI + ARQ(Redis) 建非同步任務佇列，將切割最佳化與偵測評估等長任務與 API 解耦；整合 OpCut / rectpack 自動產生切割佈局。</span>
-                <span lang="en">Built FastAPI + ARQ (Redis) async queues to decouple cutting-optimization and evaluation jobs from the API; integrated OpCut / rectpack auto-layout.</span>
+                <span lang="zh">以 FastAPI + ARQ(Redis) 建非同步任務佇列，將切割最佳化、偵測評估等長任務與 API 解耦；整合 OpCut / rectpack 切割排版演算法自動產生面板佈局，取代人工排版。</span>
+                <span lang="en">Built FastAPI + ARQ (Redis) async queues to decouple long jobs (cutting optimization, detection eval) from the API; integrated the OpCut / rectpack algorithms to auto-generate panel layouts, replacing manual layout.</span>
               </li>
               <li>
-                <span lang="zh">打造 React 19 + React Router 7 + Tailwind 4 內部 SPA，雙軌認證 LDAP/AD→JWT 與 X-API-Key，以 Docker Compose + GitHub Actions 部署。</span>
-                <span lang="en">Shipped a React 19 + React Router 7 + Tailwind 4 internal SPA with dual-track auth (LDAP/AD→JWT, X-API-Key) via Docker Compose + GitHub Actions.</span>
+                <span lang="zh">打造 React 19 + React Router 7（檔案式路由）+ Tailwind 4 內部 SPA：@dnd-kit 拖拉排版、react-window 虛擬化處理大量清單、Recharts 視覺化檢測結果，並以 Vitest 撰寫單元測試。</span>
+                <span lang="en">Shipped a React 19 + React Router 7 (file-based routes) + Tailwind 4 internal SPA: @dnd-kit drag-and-drop layout, react-window virtualization for large lists, Recharts result visualization, and Vitest unit tests.</span>
+              </li>
+              <li>
+                <span lang="zh">以 SQLModel + Alembic 管理 schema migration、SeaweedFS(S3) 儲存影像 artifacts、MLflow 追蹤模型版本；雙軌認證 LDAP/AD→JWT 與機器流量 X-API-Key，並以 Docker Compose + GitHub Actions(GHCR) 完成多站點部署。</span>
+                <span lang="en">Managed schema migrations with SQLModel + Alembic, stored image artifacts in SeaweedFS (S3), and tracked model versions in MLflow; dual-track auth (LDAP/AD→JWT for users, X-API-Key for machines) with multi-site delivery via Docker Compose + GitHub Actions (GHCR).</span>
               </li>
             </ul>
+            <details class="diag">
+              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
+              <div class="diag__canvas">
+                <pre class="mermaid">
+flowchart LR
+  U([User])
+  V([Factory device])
+  subgraph CLOUD [Server · cloud]
+    FE[Frontend SPA · React 19]
+    BE[Backend API · FastAPI · inference-free]
+    PG[(PostgreSQL)]
+    RD[(Redis · ARQ)]
+    S3[(SeaweedFS S3)]
+    MLF[(MLflow)]
+    FE --&gt;|REST| BE
+    BE --&gt; PG
+    BE --&gt; RD
+    BE --&gt; S3
+  end
+  subgraph EDGE [Factory Edge · on-prem]
+    ED[Edge · YOLO / ONNX]
+  end
+  U --&gt;|JWT| FE
+  V --&gt;|HTTP| ED
+  ED --&gt;|X-API-Key| BE
+  ED --&gt;|upload| S3
+  MLF -. model .-&gt; ED
+  classDef edge fill:#fde68a,stroke:#d97706,color:#000
+  classDef server fill:#bfdbfe,stroke:#2563eb,color:#000
+  class EDGE,ED edge
+  class CLOUD,FE,BE,PG,RD,S3,MLF server
+                </pre>
+              </div>
+            </details>
           </div>
 
           <div class="proj">
             <h4 class="proj__name">
-              <span lang="zh">材料剖面影像 AI 量測平台</span>
-              <span lang="en">Material cross-section AI measurement platform</span>
+              <span lang="zh">TM2 Cross Section — 晶圓 / 材料剖面影像 AI 量測平台</span>
+              <span lang="en">TM2 Cross Section — Wafer / material cross-section AI measurement platform</span>
             </h4>
             <p class="proj__stack mono">
-              Python · FastAPI · YOLO + SAM2 · APScheduler · SeaweedFS · React Router 7
+              Python · FastAPI · YOLO + SAM2 · APScheduler · SeaweedFS · React Router 7 · Monorepo
             </p>
             <ul class="proj__list">
               <li>
-                <span lang="zh">自動從 SMB 網路磁碟擷取剖面影像，串接 YOLO + SAM2 推論管線，自動裁切、量測尺寸並萃取工程數據。</span>
-                <span lang="en">Ingested cross-section images from SMB drives through a YOLO + SAM2 pipeline that auto-crops, measures, and extracts engineering data.</span>
+                <span lang="zh">自動從 SMB 網路磁碟或本地資料夾擷取剖面影像（OP/CT/MA 位置），串接 YOLO + SAM2 推論管線定位特徵，自動裁切、量測尺寸並萃取工程數據，於 Web UI 呈現量測結果、統計圖表與 Lot/Round 批次追蹤。</span>
+                <span lang="en">Pulls cross-section images (OP/CT/MA positions) from SMB drives or local folders, runs a YOLO + SAM2 pipeline to locate features, then auto-crops, measures, and extracts engineering data — surfaced in a Web UI with charts and Lot/Round batch tracking.</span>
               </li>
               <li>
-                <span lang="zh">以 APScheduler 設計背景排程（擷取→推論→裁切→量測→上傳），採 In-memory 影像處理與 Sync/Async 雙引擎隔離降低 I/O 衝突。</span>
-                <span lang="en">Built APScheduler workflows (ingest→infer→crop→measure→upload) with in-memory processing and sync/async dual-engine isolation.</span>
+                <span lang="zh">後端採 Router→Controller→Service 分層、統一 BaseResponse[T] 回應封裝；以 APScheduler 設計背景排程（擷取→推論→裁切→量測→上傳、上傳重試與清理）。</span>
+                <span lang="en">Layered the backend as Router→Controller→Service with a unified BaseResponse[T] envelope; built APScheduler workflows (ingest→infer→crop→measure→upload, plus upload-retry and cleanup).</span>
               </li>
               <li>
-                <span lang="zh">規劃邊緣解耦架構（Worker 僅以 HTTP 回傳），支援 PostgreSQL / Oracle / MySQL 多後端並以 MLflow 管理模型版本。</span>
-                <span lang="en">Designed an edge-decoupled architecture (workers return via HTTP only) across PostgreSQL / Oracle / MySQL, with MLflow model versioning.</span>
+                <span lang="zh">採 In-memory 影像工作流（全程記憶體傳遞 bytes、無磁碟暫存）與 Sync/Async 雙引擎隔離（HTTP 走 asyncpg、排程走 sync engine），降低 I/O 與事件迴圈衝突。</span>
+                <span lang="en">Adopted an in-memory image workflow (bytes passed through memory, no disk temp files) and sync/async dual-engine isolation (asyncpg for HTTP, a sync engine for scheduling) to cut I/O and event-loop contention.</span>
+              </li>
+              <li>
+                <span lang="zh">規劃邊緣解耦架構（Edge Worker 僅以 HTTP 回傳、不直連 DB，schema 變更只由後端負責），透過 DATABASE_URL 支援 PostgreSQL / Oracle / MySQL 多後端，並以 MLflow 管理模型版本、預建 image tarball 支援離線部署。</span>
+                <span lang="en">Designed an edge-decoupled architecture (workers return over HTTP only, never touch the DB; schema owned solely by the backend), switchable across PostgreSQL / Oracle / MySQL via DATABASE_URL, with MLflow model versioning and prebuilt image tarballs for offline deployment.</span>
               </li>
             </ul>
+            <details class="diag">
+              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
+              <div class="diag__canvas">
+                <pre class="mermaid">
+flowchart LR
+  subgraph EDGE [Factory Edge]
+    SMB[(SMB drive)] --&gt; EW[Edge Worker · YOLO + SAM2]
+    EW --&gt; MS[crop / measure]
+  end
+  subgraph CENTER [Server]
+    API[FastAPI · Router-Controller-Service]
+    DB[(PostgreSQL / Oracle / MySQL)]
+    S3[(SeaweedFS S3)]
+    MLF[(MLflow)]
+    API --&gt; DB
+    API --&gt; S3
+  end
+  MS --&gt;|HTTP results| API
+  MS --&gt;|crops| S3
+  FE[React Router 7 SPA] &lt;--&gt;|Axios| API
+  MLF -. model .-&gt; EW
+  classDef edge fill:#fde68a,stroke:#d97706,color:#000
+  classDef server fill:#bfdbfe,stroke:#2563eb,color:#000
+  class EDGE,SMB,EW,MS edge
+  class CENTER,API,DB,S3,MLF server
+                </pre>
+              </div>
+            </details>
           </div>
 
           <div class="proj">
             <h4 class="proj__name">
-              <span lang="zh">自托管 CI/CD + MLOps 基礎設施（內網 air-gapped）</span>
+              <span lang="zh">自托管 CI/CD + MLOps 基礎設施平台（內網 air-gapped）</span>
               <span lang="en">Self-hosted CI/CD + MLOps platform (air-gapped)</span>
             </h4>
             <p class="proj__stack mono">
-              Docker Compose · Traefik v3 · SeaweedFS · Gitea Actions · Jenkins(JCasC) · MLflow
+              Docker Compose · Traefik v3 · SeaweedFS · Gitea Actions · Jenkins(JCasC) · Docker Registry · MLflow · DVC
             </p>
             <ul class="proj__list">
               <li>
-                <span lang="zh">於無外網環境從零整合 10+ 服務；以 SeaweedFS 建 S3 相容分散式儲存叢集，統一承載 LFS / Registry / artifacts / DVC 並跨 VM 擴充。</span>
-                <span lang="en">Integrated 10+ services from scratch with no internet; built an S3-compatible SeaweedFS cluster backing Git LFS, Registry, artifacts, and DVC across VMs.</span>
+                <span lang="zh">於完全無外網環境從零整合 10+ 服務（Gitea + Actions、Jenkins、Registry、MLflow、PostgreSQL 17、pgAdmin），單機可起、儲存可水平擴充。</span>
+                <span lang="en">Integrated 10+ services from scratch with zero internet access (Gitea + Actions, Jenkins, Registry, MLflow, PostgreSQL 17, pgAdmin) — single-host bootstrap with horizontally scalable storage.</span>
               </li>
               <li>
-                <span lang="zh">以 Traefik v3 取代 nginx（動態路由 + 多 entrypoint TLS），設計四層網段隔離與 IAM / BasicAuth 存取控制。</span>
-                <span lang="en">Replaced nginx with Traefik v3 (dynamic routing + multi-entrypoint TLS) and designed 4-layer network segmentation with IAM / BasicAuth.</span>
+                <span lang="zh">以 SeaweedFS（Master / Volume / Filer）建 S3 相容分散式儲存叢集，作為單一後端統一承載 Git LFS、Docker Registry blobs、Jenkins / MLflow artifacts 與 DVC，並完成 Volume 跨 VM 水平擴充。</span>
+                <span lang="en">Built an S3-compatible SeaweedFS cluster (Master / Volume / Filer) as a single backend for Git LFS, Docker Registry blobs, Jenkins / MLflow artifacts, and DVC — scaling Volume nodes horizontally across VMs.</span>
               </li>
               <li>
-                <span lang="zh">撰寫 Bash 一鍵部署腳本、Jenkins 以 JCasC 宣告式設定，並以內網 Nexus proxy 解決離線安裝。</span>
-                <span lang="en">Automated one-command Bash deploys, declarative Jenkins via JCasC, and offline installs through an internal Nexus proxy.</span>
+                <span lang="zh">以 Traefik v3 取代 nginx（Docker label 動態路由 + 多 entrypoint TLS 單點終止），設計 proxy / db / storage / cicd 四層網段隔離與 IAM / BasicAuth 存取控制，對外僅暴露必要 HTTPS 端點。</span>
+                <span lang="en">Replaced nginx with Traefik v3 (Docker-label dynamic routing + single-point multi-entrypoint TLS); designed four isolated networks (proxy / db / storage / cicd) with IAM / BasicAuth, exposing only required HTTPS endpoints.</span>
+              </li>
+              <li>
+                <span lang="zh">撰寫 Bash 一鍵部署 / 初始化腳本（DB、S3 bucket、Registry GC、runner 註冊），Jenkins 以 JCasC 宣告式設定並採 Docker-outside-of-Docker 建置；以內網 Nexus proxy 解決離線套件安裝，並完成 SeaweedFS 從 s3.json 遷移到 IAM identity 及叢集版本升級。</span>
+                <span lang="en">Wrote idempotent Bash deploy/init scripts (DB, S3 bucket, registry GC, runner registration), configured Jenkins declaratively via JCasC with Docker-outside-of-Docker builds, solved offline installs through an internal Nexus proxy, and migrated SeaweedFS from s3.json to IAM identities alongside a cluster version upgrade.</span>
               </li>
             </ul>
+            <details class="diag">
+              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
+              <div class="diag__canvas">
+                <pre class="mermaid">
+flowchart TB
+  DEV([Developer / CI]) --&gt;|HTTPS| TR[Traefik v3 · TLS gateway]
+  TR --&gt; GIT[Gitea + Actions]
+  TR --&gt; JEN[Jenkins · JCasC]
+  TR --&gt; REG[Docker Registry]
+  TR --&gt; MLF[MLflow]
+  GIT --&gt; PG[(PostgreSQL)]
+  MLF --&gt; PG
+  GIT --&gt;|LFS| S3[(SeaweedFS · S3 cluster)]
+  REG --&gt;|blobs| S3
+  JEN --&gt;|artifacts| S3
+  DEV -. DVC .-&gt; S3
+                </pre>
+              </div>
+            </details>
           </div>
 
           <div class="proj">
             <h4 class="proj__name">
-              <span lang="zh">企業內部 LLM 服務與 AutoML 導入</span>
-              <span lang="en">Internal LLM service & AutoML adoption</span>
+              <span lang="zh">自架 GPU LLM 平台 — vLLM × Open WebUI × RAG</span>
+              <span lang="en">Self-hosted GPU LLM platform — vLLM × Open WebUI × RAG</span>
             </h4>
-            <p class="proj__stack mono">LLM Serving · RAG · IBM watsonx · AutoML</p>
+            <p class="proj__stack mono">
+              vLLM · Open WebUI · SearXNG · Firecrawl · n8n · Docker Compose · NVIDIA GPU
+            </p>
             <ul class="proj__list">
               <li>
-                <span lang="zh">架設企業內部 LLM 服務供全公司使用，統一對話與文件問答介面，資料留在內網、降低各部門導入 AI 的門檻。</span>
-                <span lang="en">Stood up a company-wide internal LLM service (unified chat + document Q&A, data on-prem), lowering the bar for AI adoption across teams.</span>
+                <span lang="zh">從零打造一套<em>資料不出境</em>的企業級 LLM 服務平台，以 Docker Compose 編排 9 個服務，供全公司統一使用對話與文件問答，降低各部門導入 AI 的門檻。</span>
+                <span lang="en">Built a <em>data-never-leaves</em> enterprise LLM platform from scratch — 9 services orchestrated with Docker Compose — giving the whole company a unified chat + document-Q&A entry point and lowering the bar for AI adoption.</span>
               </li>
               <li>
-                <span lang="zh">導入 IBM watsonx AutoML，讓非技術同仁以低程式碼方式快速建立與評估預測模型。</span>
-                <span lang="en">Adopted IBM watsonx AutoML so non-technical staff could build and evaluate predictive models via a low-code workflow.</span>
+                <span lang="zh">在<em>單張 NVIDIA GPU</em> 上以 vLLM 服務 27B 量化模型：採 FP8 權重 + FP8 KV cache、gpu-memory-utilization 推到 0.9，同時容納 256K 長上下文，並提供 OpenAI 相容 /v1 API 讓既有程式無痛切換。</span>
+                <span lang="en">Served a 27B quantized model on a <em>single NVIDIA GPU</em> with vLLM — FP8 weights + FP8 KV cache, gpu-memory-utilization pushed to 0.9 to fit a 256K context — exposed via an OpenAI-compatible /v1 API for drop-in replacement.</span>
+              </li>
+              <li>
+                <span lang="zh">串接 SearXNG（自架聚合式搜尋）與 Firecrawl（網頁→Markdown，由原始碼自建）形成完整 RAG 迴路「搜尋→爬取→回答」；啟用 Hermes tool-call parser + reasoning parser 支援 Tool Calling 與思考模式。</span>
+                <span lang="en">Wired SearXNG (self-hosted metasearch) and Firecrawl (web→Markdown, built from source) into a full RAG loop — search → crawl → answer — and enabled the Hermes tool-call parser + reasoning parser for tool calling and chain-of-thought.</span>
+              </li>
+              <li>
+                <span lang="zh">自製 Open WebUI Firecrawl 工具（Pydantic Valves 可配置、支援單頁 / 整站爬取與連結地圖），以 n8n 串接 LLM 與外部系統做低程式碼自動化；另導入 IBM watsonx AutoML 供非技術同仁建立預測模型。</span>
+                <span lang="en">Wrote a custom Open WebUI Firecrawl tool (configurable Pydantic Valves; single-page / full-site crawl + link map), used n8n for low-code automation linking the LLM to external systems, and additionally rolled out IBM watsonx AutoML for non-technical staff to build predictive models.</span>
               </li>
             </ul>
+            <details class="diag">
+              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
+              <div class="diag__canvas">
+                <pre class="mermaid">
+flowchart TB
+  U([User]) --&gt; WUI[Open WebUI]
+  WUI --&gt;|OpenAI /v1| VLLM[vLLM · 27B FP8 · 256K ctx]
+  VLLM === GPU[[NVIDIA GPU]]
+  WUI --&gt;|search| SX[SearXNG]
+  WUI --&gt;|crawl| FC[Firecrawl]
+  VLLM -. tool calling .-&gt; SX
+  FC --&gt; PW[Playwright]
+  FC --&gt; INF[(Redis · RabbitMQ · PG)]
+                </pre>
+              </div>
+            </details>
           </div>
 
           <p class="earlier">
@@ -1148,9 +1323,15 @@
             </div>
           </div>
           <div class="skill">
-            <div class="skill__cat">AI / ML</div>
+            <div class="skill__cat">AI / ML · CV</div>
             <div class="chips">
-              <span class="chip">YOLO</span><span class="chip">SAM2</span><span class="chip">ONNX Runtime</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">OpenCV</span><span class="chip">MLflow</span><span class="chip">DVC</span><span class="chip">IBM watsonx</span>
+              <span class="chip">YOLO</span><span class="chip">SAM2</span><span class="chip">ONNX Runtime</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">OpenCV</span><span class="chip">MLflow</span><span class="chip">DVC</span><span class="chip">Edge Inference</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill__cat">LLM / GenAI</div>
+            <div class="chips">
+              <span class="chip">vLLM</span><span class="chip">LLM Serving</span><span class="chip">RAG</span><span class="chip">Tool Calling</span><span class="chip">FP8 量化</span><span class="chip">Open WebUI</span><span class="chip">SearXNG</span><span class="chip">Firecrawl</span><span class="chip">n8n</span><span class="chip">IBM watsonx</span>
             </div>
           </div>
           <div class="skill">
@@ -1343,6 +1524,7 @@
           }
           root.dataset.theme = next;
           store("resume-theme", next);
+          if (window.__rerenderDiagrams) window.__rerenderDiagrams();
         });
 
         /* ---- language (default zh) ---- */
@@ -1367,6 +1549,90 @@
           setLang("en");
         });
       })();
+    </script>
+
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+      // Each diagram is rendered lazily the first time its <details> opens, so
+      // it is never laid out while hidden (hidden labels measure as 0 and the
+      // graph collapses). Re-rendered on theme change to repaint colours.
+      var entries = Array.prototype.slice
+        .call(document.querySelectorAll(".diag"))
+        .map(function (d) {
+          var node = d.querySelector(".mermaid");
+          return { d: d, node: node, src: node.textContent };
+        });
+
+      function configure() {
+        var cs = getComputedStyle(document.documentElement);
+        var g = function (k) {
+          return cs.getPropertyValue(k).trim();
+        };
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: "base",
+          securityLevel: "strict",
+          fontFamily: "'IBM Plex Mono', ui-monospace, monospace",
+          flowchart: {
+            htmlLabels: false,
+            curve: "basis",
+            padding: 14,
+            nodeSpacing: 46,
+            rankSpacing: 58,
+            useMaxWidth: true,
+          },
+          themeVariables: {
+            fontSize: "13px",
+            background: g("--paper"),
+            mainBkg: g("--card"),
+            primaryColor: g("--card"),
+            primaryBorderColor: g("--line-strong"),
+            primaryTextColor: g("--ink"),
+            secondaryColor: g("--paper-2"),
+            secondaryBorderColor: g("--line-strong"),
+            secondaryTextColor: g("--ink"),
+            tertiaryColor: g("--paper-2"),
+            tertiaryBorderColor: g("--line-strong"),
+            tertiaryTextColor: g("--ink"),
+            lineColor: g("--muted"),
+            clusterBkg: g("--paper-2"),
+            clusterBorder: g("--line-strong"),
+            titleColor: g("--ink"),
+            nodeBorder: g("--line-strong"),
+            nodeTextColor: g("--ink"),
+            edgeLabelBackground: g("--paper"),
+          },
+        });
+      }
+
+      async function renderOne(e) {
+        configure();
+        e.node.removeAttribute("data-processed");
+        e.node.textContent = e.src;
+        try {
+          await mermaid.run({ nodes: [e.node] });
+        } catch (err) {
+          /* leave source text visible on failure */
+        }
+      }
+
+      entries.forEach(function (e) {
+        e.d.addEventListener("toggle", function () {
+          if (e.d.open && !e.node.hasAttribute("data-processed")) renderOne(e);
+        });
+        // render now if already open (e.g. deep-link / preview)
+        if (e.d.open && !e.node.hasAttribute("data-processed")) renderOne(e);
+      });
+
+      // repaint open diagrams on theme switch; stale closed ones re-render on next open
+      window.__rerenderDiagrams = function () {
+        entries.forEach(function (e) {
+          if (!e.node.hasAttribute("data-processed")) return;
+          if (e.d.open) renderOne(e);
+          else e.node.removeAttribute("data-processed");
+        });
+      };
     </script>
   </body>
 </html>
