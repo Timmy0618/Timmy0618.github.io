@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" data-theme="light" data-lang="zh">
+<html lang="zh-Hant" data-lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,67 +8,73 @@
       content="趙奕錡 (YICHI Chao) — 軟體工程師 / 全端工程師。在無外網的工廠環境中，從零打造工業級 AI 系統與自托管基礎設施。Software / Full-Stack Engineer building industrial AI from scratch."
     />
     <title>趙奕錡 YICHI Chao — Software / Full-Stack Engineer</title>
+    <script>
+      (function () {
+        var t;
+        try { t = localStorage.getItem("resume-theme"); } catch (e) {}
+        if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+TC:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Sans+TC:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23efeee8'/%3E%3Crect x='6' y='6' width='20' height='20' rx='1.5' fill='none' stroke='%231a1814' stroke-width='2'/%3E%3Crect x='11' y='11' width='10' height='8' fill='none' stroke='%23c23b22' stroke-width='1.6'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23e9edf1'/%3E%3Cpath d='M6 9h20M6 16h20M6 23h20' stroke='%2314202e' stroke-width='2'/%3E%3Cpath d='M6 16h9' stroke='%231f4fd1' stroke-width='3'/%3E%3C/svg%3E"
     />
 
     <style>
       :root {
-        /* light / e-paper day mode (default) */
-        --paper: #efeee8;
-        --paper-2: #e8e7e0;
-        --card: #f6f5f0;
-        --ink: #1a1814;
-        --ink-2: #4c483f;
-        --muted: #837e72;
-        --line: #d2cfc4;
-        --line-strong: #bcb8ab;
-        --spot: #c23b22;
-        --spot-soft: rgba(194, 59, 34, 0.1);
-        --on-spot: #fbf9f4;
-        --dither: rgba(26, 24, 20, 0.42);
-        --flash: #1a1814;
+        color-scheme: light;
+        interpolate-size: allow-keywords;
+        --paper: #e9edf1;
+        --card: #f3f5f8;
+        --ink: #14202e;
+        --ink-2: #3d4959;
+        --muted: #5f6b7c;
+        --line: #c9d1db;
+        --line-strong: #aab5c3;
+        --spot: #1f4fd1;
+        --spot-ink: #1a43b3;
+        --on-spot: #f4f7fc;
+        --zone-edge: #e9edf1;
+        --zone-edge-line: #1f4fd1;
+        --zone-cloud: #d9e3f7;
+        --zone-cloud-line: #1f4fd1;
 
-        --ff-display: "IBM Plex Sans Condensed", "IBM Plex Sans TC", sans-serif;
         --ff-sans: "IBM Plex Sans", "IBM Plex Sans TC", sans-serif;
-        --ff-tc: "IBM Plex Sans TC", "IBM Plex Sans", sans-serif;
+        --ff-cond: "IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif;
         --ff-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-        --maxw: 1140px;
-        --pad: clamp(1.15rem, 4.5vw, 3rem);
+        --maxw: 1240px;
+        --pad: clamp(1rem, 4.5vw, 4.5rem);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
       }
-
       html[data-theme="dark"] {
-        --paper: #14130f;
-        --paper-2: #1a1914;
-        --card: #1e1c16;
-        --ink: #ece8dc;
-        --ink-2: #b6b0a0;
-        --muted: #8b8576;
-        --line: #322f28;
-        --line-strong: #46423a;
-        --spot: #e75f40;
-        --spot-soft: rgba(231, 95, 64, 0.14);
-        --on-spot: #14130f;
-        --dither: rgba(236, 232, 220, 0.4);
-        --flash: #ece8dc;
+        color-scheme: dark;
+        --paper: #0d1520;
+        --card: #162030;
+        --ink: #dfe7f0;
+        --ink-2: #a9b5c4;
+        --muted: #8592a3;
+        --line: #223044;
+        --line-strong: #34445c;
+        --spot: #6f9bff;
+        --spot-ink: #8fb1ff;
+        --on-spot: #0d1520;
+        --zone-edge: #0d1520;
+        --zone-edge-line: #6f9bff;
+        --zone-cloud: #172a4d;
+        --zone-cloud-line: #6f9bff;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body {
         margin: 0;
         background: var(--paper);
@@ -77,997 +83,391 @@
         font-size: 16px;
         line-height: 1.65;
         -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-        overflow-x: hidden;
-        transition: background-color 0.4s ease, color 0.4s ease;
+        font-variant-numeric: tabular-nums;
       }
-      ::selection {
-        background: var(--spot);
-        color: var(--on-spot);
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      :focus-visible {
-        outline: 2px solid var(--spot);
-        outline-offset: 3px;
-      }
+      ::selection { background: var(--spot); color: var(--on-spot); }
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--spot); outline-offset: 3px; }
+      h1, h2, h3, h4, p, ul, dl, dd, figure { margin: 0; }
+      .mono { font-family: var(--ff-mono); }
 
-      .wrap {
-        max-width: var(--maxw);
-        margin: 0 auto;
-        padding-inline: var(--pad);
-      }
-      .mono {
-        font-family: var(--ff-mono);
-      }
+      html[data-lang="zh"] [lang="en"],
+      html[data-lang="en"] [lang="zh"] { display: none !important; }
 
-      /* ---------- bilingual visibility ---------- */
-      html[data-lang="zh"] [lang="en"] {
-        display: none !important;
-      }
-      html[data-lang="en"] [lang="zh"] {
-        display: none !important;
-      }
-
-      /* ---------- e-ink refresh flash ---------- */
-      .refresh {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: var(--flash);
-        opacity: 0;
-        pointer-events: none;
-      }
-      .refresh--go {
-        animation: eink 0.32s steps(2, end) forwards;
-      }
-      @keyframes eink {
-        0% {
-          opacity: 0;
-        }
-        40% {
-          opacity: 0.92;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
+      .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 
       /* ---------- top bar ---------- */
-      .bar {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: color-mix(in srgb, var(--paper) 88%, transparent);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid var(--line);
-      }
-      .bar__in {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding-block: 0.75rem;
-      }
-      .brand {
-        font-family: var(--ff-mono);
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
-        color: var(--ink);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55rem;
-      }
-      .brand b {
-        color: var(--ink);
-        font-weight: 600;
-      }
-      .brand .sq {
-        width: 9px;
-        height: 9px;
-        border: 1.5px solid var(--spot);
-        display: inline-block;
-      }
-      .controls {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-      }
-      .seg {
-        display: inline-flex;
-        border: 1px solid var(--line-strong);
-        border-radius: 999px;
-        overflow: hidden;
-      }
+      .bar { border-bottom: 1px solid var(--line); }
+      .bar__in { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+      .brand { font-size: 0.875rem; text-decoration: none; letter-spacing: 0.04em; }
+      .brand b { font-weight: 700; margin-right: 0.5em; }
+      .brand span { font-family: var(--ff-cond); letter-spacing: 0.12em; color: var(--muted); }
+      .seg { display: flex; border: 1px solid var(--line-strong); }
       .seg button {
-        all: unset;
-        cursor: pointer;
-        font-family: var(--ff-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.06em;
-        padding: 0.32rem 0.7rem;
-        color: var(--muted);
-        line-height: 1.4;
-        transition: background 0.2s, color 0.2s;
+        font: 500 0.8125rem var(--ff-mono);
+        background: none; color: var(--muted); border: 0; padding: 0.4rem 0.8rem; cursor: pointer;
       }
-      .seg button[aria-pressed="true"] {
-        background: var(--ink);
-        color: var(--paper);
-      }
-      .seg button:hover:not([aria-pressed="true"]) {
-        color: var(--ink);
-      }
+      .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+      .seg button:not([aria-pressed="true"]):hover { color: var(--ink); }
+      .controls { display: flex; gap: 0.5rem; }
       .iconbtn {
-        all: unset;
-        cursor: pointer;
-        display: inline-grid;
-        place-items: center;
-        width: 2rem;
-        height: 2rem;
-        border: 1px solid var(--line-strong);
-        border-radius: 999px;
-        color: var(--ink);
-        transition: background 0.2s, border-color 0.2s;
+        display: grid; place-items: center; padding: 0 0.6rem;
+        background: none; color: var(--ink); border: 1px solid var(--line-strong); cursor: pointer;
       }
-      .iconbtn:hover {
-        background: var(--spot-soft);
-        border-color: var(--spot);
-        color: var(--spot);
-      }
-      .iconbtn svg {
-        width: 16px;
-        height: 16px;
-      }
-      html[data-theme="light"] .iconbtn .moon {
-        display: block;
-      }
-      html[data-theme="light"] .iconbtn .sun {
-        display: none;
-      }
-      html[data-theme="dark"] .iconbtn .moon {
-        display: none;
-      }
-      html[data-theme="dark"] .iconbtn .sun {
-        display: block;
-      }
+      .iconbtn:hover { border-color: var(--spot); color: var(--spot-ink); }
+      .iconbtn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; }
+      html[data-theme="dark"] .iconbtn .moon,
+      html:not([data-theme="dark"]) .iconbtn .sun { display: none; }
 
-      /* ---------- hero ---------- */
-      .hero {
-        padding-block: clamp(2.6rem, 7vw, 5.5rem) clamp(2.4rem, 6vw, 4.5rem);
+      /* ---------- head ---------- */
+      .head {
         display: grid;
-        grid-template-columns: 1.35fr 1fr;
-        gap: clamp(2rem, 5vw, 4rem);
-        align-items: center;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 2rem 4rem;
+        align-items: end;
+        padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(1.75rem, 3.5vw, 2.5rem);
       }
-      @media (max-width: 880px) {
-        .hero {
-          grid-template-columns: 1fr;
-          gap: 2.4rem;
-        }
-      }
-      .hero__eyebrow {
-        font-family: var(--ff-mono);
-        font-size: 0.78rem;
-        letter-spacing: 0.08em;
-        color: var(--muted);
-        margin: 0 0 1.4rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem 0.9rem;
-        align-items: center;
-      }
-      .hero__eyebrow b {
-        color: var(--ink);
-        font-weight: 600;
-      }
-      .hero__eyebrow .tick {
-        color: var(--spot);
-      }
-      .hero__title {
-        font-family: var(--ff-display);
-        font-weight: 700;
-        font-size: clamp(3rem, 8vw, 5.4rem);
+      .head h1 {
+        font-size: clamp(3rem, 7vw, 5.25rem);
         line-height: 1;
-        letter-spacing: 0.02em;
-        margin: 0;
-        display: flex;
-        align-items: baseline;
-        flex-wrap: wrap;
-        gap: 0.2rem 1rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
       }
-      .hero__rom {
-        font-family: var(--ff-mono);
-        font-weight: 500;
-        font-size: clamp(0.85rem, 1.8vw, 1.05rem);
-        letter-spacing: 0.22em;
+      .head h1 .rom {
+        display: inline-block;
+        font: 600 clamp(1rem, 1.9vw, 1.6rem) var(--ff-cond);
+        letter-spacing: 0.18em;
         color: var(--muted);
-        align-self: center;
+        margin-left: 0.9rem;
+        vertical-align: 0.5em;
       }
-      .hero__summary {
-        font-family: var(--ff-tc);
-        font-size: clamp(1rem, 1.5vw, 1.12rem);
-        line-height: 1.75;
+      .role { font-size: 1rem; color: var(--muted); margin-top: 1rem; }
+      .pos {
+        font-size: clamp(1.125rem, 1.7vw, 1.375rem);
+        line-height: 1.55;
         color: var(--ink-2);
-        max-width: 44ch;
-        margin: 1.4rem 0 0;
+        margin-top: 0.75rem;
+        max-width: 40em;
+        text-wrap: pretty;
       }
-      .hero__summary b {
-        color: var(--ink);
-        font-weight: 600;
-      }
-      .hero__summary .spot {
-        color: var(--spot);
-        font-weight: 600;
-      }
-      .hero__traits {
-        font-family: var(--ff-mono);
-        font-size: 0.8rem;
-        letter-spacing: 0.02em;
-        color: var(--ink-2);
-        margin: 1.5rem 0 0;
-      }
-      .hero__cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 1.8rem;
-      }
+      .pos strong { color: var(--ink); font-weight: 700; }
+      .pos em { font-style: normal; color: var(--spot-ink); font-weight: 700; }
+
+      .side { display: grid; gap: 1.25rem; justify-items: end; }
+      .facts { display: flex; gap: 2rem; }
+      .facts div { text-align: right; }
+      .facts dt { font: 500 0.8125rem var(--ff-sans); color: var(--muted); }
+      .facts dd { font-size: 1.25rem; font-weight: 700; line-height: 1.3; white-space: nowrap; }
+      .actions { display: flex; align-items: center; gap: 1.5rem; }
       .btn {
-        font-family: var(--ff-mono);
-        font-size: 0.78rem;
-        letter-spacing: 0.04em;
-        padding: 0.6rem 1.1rem;
-        border: 1px solid var(--ink);
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: background 0.2s, color 0.2s, transform 0.15s;
-      }
-      .btn--solid {
-        background: var(--ink);
-        color: var(--paper);
-      }
-      .btn--solid:hover {
+        display: inline-block;
         background: var(--spot);
-        border-color: var(--spot);
         color: var(--on-spot);
-        transform: translateY(-1px);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.0625rem;
+        padding: 0.95rem 1.6rem;
+        transition: background-color 0.2s var(--ease);
       }
-      .btn--ghost:hover {
-        background: var(--ink);
-        color: var(--paper);
-        transform: translateY(-1px);
+      .btn:hover { background: var(--spot-ink); }
+      .link {
+        font: 500 0.9375rem var(--ff-sans);
+        text-decoration: underline;
+        text-decoration-color: var(--line-strong);
+        text-underline-offset: 0.3em;
       }
+      .ico { width: 0.95em; height: 0.95em; margin-left: 0.45em; vertical-align: -0.1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; }
+      .link:hover { text-decoration-color: var(--spot); color: var(--spot-ink); }
 
-      /* spec strip */
-      .specs {
-        list-style: none;
-        margin: clamp(1.8rem, 4vw, 2.6rem) 0 0;
-        padding: 0;
+      /* ---------- ledger ---------- */
+      .ledger { margin-bottom: clamp(4rem, 9vw, 7rem); }
+      .ledger__bar {
+        display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+        padding-bottom: 0.75rem;
+      }
+      .ledger__bar h2, .sec h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: 0.01em; }
+      .ledger__bar h2 small, .sec h2 small {
+        font: 500 0.875rem var(--ff-sans); color: var(--muted);
+        margin-left: 0.75rem;
+      }
+      .toggle-all {
+        font: 500 0.8125rem var(--ff-sans);
+        background: none; border: 1px solid var(--line-strong); color: var(--ink);
+        padding: 0.35rem 0.8rem; cursor: pointer;
+      }
+      .toggle-all:hover { border-color: var(--spot); color: var(--spot-ink); }
+
+      .cols, .row > summary {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        border-top: 1px solid var(--line-strong);
+        grid-template-columns: 3rem minmax(0, 2.3fr) minmax(0, 1.25fr) minmax(0, 1.9fr) minmax(0, 1.35fr) 1.75rem;
+        gap: 0 1.25rem;
+        padding: 0 0.75rem;
       }
-      @media (max-width: 520px) {
-        .specs {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      .specs li {
-        padding: 0.9rem 0.9rem 0.2rem 0;
-        border-right: 1px solid var(--line);
-        padding-left: 0;
-      }
-      .specs li:last-child {
-        border-right: 0;
-      }
-      .specs dt {
-        font-family: var(--ff-mono);
-        font-size: 0.62rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .specs dd {
-        margin: 0.3rem 0 0;
-        font-family: var(--ff-display);
-        font-weight: 600;
-        font-size: 1.02rem;
-        color: var(--ink);
-      }
-
-      /* hero panel — mock E-Ink defect detection view */
-      .panel {
-        position: relative;
-        aspect-ratio: 4 / 3.4;
-        border: 1px solid var(--line-strong);
-        background: var(--card);
-        box-shadow: 0 1px 0 var(--line-strong), 8px 8px 0 -1px var(--paper-2),
-          8px 8px 0 0 var(--line);
-        overflow: hidden;
-      }
-      .panel__scr {
-        position: absolute;
-        inset: 0;
-        background-image: radial-gradient(var(--dither) 0.6px, transparent 0.7px);
-        background-size: 3px 3px;
-        -webkit-mask-image: linear-gradient(
-          115deg,
-          black 0%,
-          rgba(0, 0, 0, 0.25) 55%,
-          black 100%
-        );
-        mask-image: linear-gradient(
-          115deg,
-          black 0%,
-          rgba(0, 0, 0, 0.25) 55%,
-          black 100%
-        );
-        opacity: 0.9;
-      }
-      .panel__label {
-        position: absolute;
-        top: 0.6rem;
-        left: 0.7rem;
-        font-size: 0.6rem;
-        letter-spacing: 0.16em;
-        color: var(--muted);
-        text-transform: uppercase;
-        z-index: 3;
-      }
-      .panel__meta {
-        position: absolute;
-        bottom: 0.6rem;
-        left: 0.7rem;
-        right: 0.7rem;
-        display: flex;
-        justify-content: space-between;
-        font-family: var(--ff-mono);
-        font-size: 0.58rem;
+      .cols {
+        border-top: 2px solid var(--ink);
+        border-bottom: 1px solid var(--line-strong);
+        font: 500 0.75rem var(--ff-mono);
         letter-spacing: 0.1em;
         color: var(--muted);
-        text-transform: uppercase;
-        z-index: 3;
-      }
-      .panel__meta b {
-        color: var(--spot);
-      }
-      .bbox {
-        position: absolute;
-        border: 1.4px solid var(--spot);
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+        position: sticky;
+        top: 0;
+        background: var(--paper);
         z-index: 2;
       }
-      .bbox span {
-        position: absolute;
-        top: -1.4px;
-        left: -1.4px;
-        transform: translateY(-100%);
-        background: var(--spot);
-        color: var(--on-spot);
-        font-family: var(--ff-mono);
-        font-size: 0.56rem;
-        letter-spacing: 0.02em;
-        padding: 0.05rem 0.3rem;
-        white-space: nowrap;
-      }
-      .scan {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 28%;
-        z-index: 1;
-        background: linear-gradient(
-          180deg,
-          transparent,
-          color-mix(in srgb, var(--ink) 9%, transparent),
-          transparent
-        );
-        animation: scan 4.6s linear infinite;
-      }
-      @keyframes scan {
-        0% {
-          top: -28%;
-        }
-        100% {
-          top: 100%;
-        }
-      }
 
-      /* ---------- section scaffold ---------- */
-      section.sec {
-        padding-block: clamp(2.6rem, 6vw, 4.5rem);
-        border-top: 1px solid var(--line);
-      }
-      .sec__head {
-        display: flex;
-        align-items: baseline;
-        gap: 0.9rem;
-        margin: 0 0 clamp(1.6rem, 3.5vw, 2.6rem);
-      }
-      .sec__idx {
-        font-family: var(--ff-mono);
-        font-size: 0.74rem;
-        color: var(--spot);
-        letter-spacing: 0.05em;
-      }
-      .sec__title {
-        font-family: var(--ff-display);
-        font-weight: 700;
-        font-size: clamp(1.5rem, 3.6vw, 2.3rem);
-        letter-spacing: -0.005em;
-        margin: 0;
-      }
-      .sec__title small {
-        font-family: var(--ff-mono);
-        font-weight: 500;
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-left: 0.7rem;
-      }
-
-      /* ---------- experience ---------- */
-      .job {
-        position: relative;
-        padding-left: clamp(0px, 2vw, 1.6rem);
-      }
-      .job + .job {
-        margin-top: clamp(2.4rem, 5vw, 3.4rem);
-      }
-      .job__head {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 0.3rem 1rem;
-        padding-bottom: 0.7rem;
+      .group__head {
+        display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem;
+        padding: 1.25rem 0.75rem 0.6rem;
         border-bottom: 1px solid var(--line-strong);
       }
-      .job__co {
-        font-family: var(--ff-display);
-        font-weight: 700;
-        font-size: clamp(1.25rem, 2.8vw, 1.75rem);
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-      }
-      .status-dot {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: var(--spot);
-        box-shadow: 0 0 0 0 var(--spot);
-        animation: pulse 2.6s infinite;
-      }
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 color-mix(in srgb, var(--spot) 55%, transparent);
-        }
-        70% {
-          box-shadow: 0 0 0 8px transparent;
-        }
-        100% {
-          box-shadow: 0 0 0 0 transparent;
-        }
-      }
-      .job__role {
-        font-family: var(--ff-mono);
-        font-size: 0.82rem;
-        color: var(--ink-2);
-      }
-      .job__when {
-        font-family: var(--ff-mono);
-        font-size: 0.74rem;
-        letter-spacing: 0.04em;
-        color: var(--muted);
-      }
-      .job__intro {
-        font-family: var(--ff-tc);
-        color: var(--ink-2);
-        font-size: 0.98rem;
-        margin: 1rem 0 0;
-      }
+      .group__head h3 { font-size: 1.25rem; font-weight: 700; }
+      .group__head p { color: var(--ink-2); font-size: 0.9375rem; }
+      .group__head .when { margin-left: auto; font: 0.875rem var(--ff-mono); color: var(--muted); }
+      .group__note { padding: 0.9rem 0.75rem 0.4rem; color: var(--ink-2); max-width: 52em; font-size: 0.9375rem; }
 
-      .proj {
-        margin-top: 1.6rem;
-        padding: 1.1rem 1.2rem 1.2rem;
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-left: 2px solid var(--ink);
-      }
-      .proj__name {
-        font-family: var(--ff-sans);
-        font-weight: 600;
-        font-size: 1.04rem;
-        margin: 0;
-        line-height: 1.3;
-      }
-      .proj__stack {
-        font-family: var(--ff-mono);
-        font-size: 0.7rem;
-        letter-spacing: 0.02em;
-        color: var(--muted);
-        margin: 0.4rem 0 0.7rem;
-      }
-      .proj__list {
-        margin: 0;
-        padding: 0;
+      .row { border-bottom: 1px solid var(--line); }
+      .row > summary {
         list-style: none;
-      }
-      .proj__list li {
-        position: relative;
-        padding-left: 1.1rem;
-        font-family: var(--ff-tc);
-        font-size: 0.93rem;
-        line-height: 1.7;
-        color: var(--ink-2);
-        margin-top: 0.4rem;
-      }
-      .proj__list li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.65em;
-        width: 5px;
-        height: 5px;
-        background: var(--spot);
-      }
-      em {
-        font-style: normal;
-        font-family: var(--ff-mono);
-        font-weight: 600;
-        color: var(--spot);
-        white-space: nowrap;
-      }
-      .earlier {
-        font-family: var(--ff-tc);
-        font-size: 0.9rem;
-        color: var(--muted);
-        margin: 1.1rem 0 0;
-        padding-left: 0.2rem;
-      }
-
-      /* ---------- architecture diagrams ---------- */
-      .diag {
-        margin-top: 1rem;
-        border-top: 1px dashed var(--line-strong);
-      }
-      .diag > summary {
         cursor: pointer;
-        list-style: none;
-        font-family: var(--ff-mono);
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--muted);
-        padding: 0.7rem 0 0.1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: color 0.2s;
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+        align-items: baseline;
+        transition: background-color 0.2s var(--ease);
       }
-      .diag > summary::-webkit-details-marker {
-        display: none;
+      .row > summary::-webkit-details-marker { display: none; }
+      .row > summary:hover, .row[open] > summary { background: var(--card); }
+      .cols > span { font: inherit; color: inherit; }
+      .c-n { font: 500 0.875rem var(--ff-mono); color: var(--muted); }
+      .row[open] .c-n, .row > summary:hover .c-n { color: var(--spot-ink); }
+      .c-p b { display: block; font-size: 1.0625rem; font-weight: 700; line-height: 1.4; }
+      .c-p small { display: block; font-size: 0.875rem; color: var(--muted); line-height: 1.45; margin-top: 0.15rem; }
+      .c-k { font-size: 0.9375rem; line-height: 1.5; text-wrap: balance; }
+      .c-t { font: 0.8125rem/1.6 var(--ff-mono); color: var(--ink-2); }
+      .c-r { font: 500 0.9375rem/1.5 var(--ff-mono); color: var(--spot-ink); }
+      .c-x { position: relative; align-self: center; width: 14px; height: 14px; justify-self: end; }
+      .c-x::before, .c-x::after {
+        content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; background: var(--ink);
+        transition: transform 0.35s var(--ease);
       }
-      .diag > summary::before {
-        content: "▸";
-        color: var(--spot);
-        transition: transform 0.2s;
-      }
-      .diag[open] > summary::before {
-        transform: rotate(90deg);
-      }
-      .diag > summary:hover {
-        color: var(--ink);
-      }
-      .diag__canvas {
-        overflow-x: auto;
-        padding: 0.9rem 0 0.3rem;
-      }
-      .mermaid {
-        margin: 0;
-        text-align: center;
-        font-family: var(--ff-mono);
-        line-height: normal;
-        min-height: 1px;
-      }
-      .mermaid:not([data-processed]) {
-        color: var(--muted);
-        font-size: 0.72rem;
-      }
-      .mermaid svg {
-        max-width: 100%;
-        height: auto;
-      }
-      .mermaid .edgeLabel {
-        font-size: 0.92em;
-      }
+      .c-x::after { transform: rotate(90deg); }
+      .row[open] .c-x::after { transform: rotate(0deg); }
 
-      /* ---------- skills ---------- */
-      .skills {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0;
-        border-top: 1px solid var(--line);
-        border-left: 1px solid var(--line);
+      .row::details-content {
+        block-size: 0;
+        overflow: hidden;
+        transition: block-size 0.45s var(--ease), content-visibility 0.45s allow-discrete;
       }
-      @media (max-width: 720px) {
-        .skills {
-          grid-template-columns: 1fr;
-        }
-      }
-      .skill {
-        border-right: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 1rem 1.1rem 1.2rem;
-      }
-      .skill__cat {
-        font-family: var(--ff-mono);
-        font-size: 0.66rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--spot);
-        margin-bottom: 0.7rem;
-      }
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-      }
-      .chip {
-        font-family: var(--ff-mono);
-        font-size: 0.74rem;
-        color: var(--ink-2);
-        border: 1px solid var(--line-strong);
-        border-radius: 4px;
-        padding: 0.25rem 0.55rem;
-        background: var(--paper);
-      }
+      .row[open]::details-content { block-size: auto; }
 
-      /* ---------- two-up rows (edu / lang) ---------- */
-      .duo {
+      .row__body {
+        background: var(--card);
+        padding: 0.25rem 0.75rem 1.75rem calc(3rem + 2rem);
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(1.6rem, 5vw, 4rem);
+        gap: 1.25rem;
       }
-      @media (max-width: 720px) {
-        .duo {
-          grid-template-columns: 1fr;
-          gap: 2.4rem;
-        }
+      .row__stack { font: 0.8125rem/1.7 var(--ff-mono); color: var(--muted); max-width: 70em; }
+      .row__list { list-style: none; padding: 0; display: grid; gap: 0.6rem; max-width: 52em; }
+      .row__list li { position: relative; padding-left: 1.25rem; color: var(--ink-2); }
+      .row__list li::before {
+        content: ""; position: absolute; left: 0; top: 0.72em; width: 0.55rem; height: 1px; background: var(--spot);
       }
-      .row {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
+      .row__list em, .row__list b { font-style: normal; font-weight: 700; color: var(--ink); }
+      .diag { border-top: 1px dashed var(--line-strong); padding-top: 1rem; }
+      .diag figcaption { font: 500 0.8125rem var(--ff-sans); letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.5rem; }
+      .mermaid { margin: 0; overflow-x: auto; text-align: center; font-size: 0; }
+      .mermaid:not([data-processed]) { visibility: hidden; height: 12rem; }
+      .mermaid svg { max-width: 100%; height: auto; }
+
+      /* ---------- secondary sections ---------- */
+      .sec { margin-bottom: clamp(4rem, 9vw, 7rem); }
+      .sec h2 { border-bottom: 2px solid var(--ink); padding-bottom: 0.75rem; }
+      .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(2rem, 5vw, 4.5rem); }
+      .rows > div {
+        display: grid;
+        grid-template-columns: 9rem minmax(0, 1fr) auto;
+        gap: 0.25rem 1.25rem;
         padding: 0.85rem 0;
         border-bottom: 1px solid var(--line);
+        align-items: baseline;
       }
-      .row:first-child {
-        border-top: 1px solid var(--line);
+      .rows dt { font: 500 0.875rem var(--ff-sans); color: var(--muted); }
+      .rows dd { color: var(--ink-2); }
+      .rows dd b { color: var(--ink); font-weight: 700; display: block; }
+      .rows .when { font: 0.875rem var(--ff-mono); color: var(--muted); white-space: nowrap; }
+      .rows .score { font: 500 1rem var(--ff-mono); color: var(--spot-ink); white-space: nowrap; }
+      .stack-rows > div { grid-template-columns: 9rem minmax(0, 1fr); }
+      .stack-rows dd { font: 0.875rem/1.7 var(--ff-mono); }
+
+      /* ---------- contact ---------- */
+      .close { border-top: 2px solid var(--ink); padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3rem, 7vw, 5rem); }
+      .close h2 { font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; max-width: 18em; }
+      .close .mail {
+        display: inline-block;
+        margin-top: 1.5rem;
+        font: 500 clamp(1.25rem, 3vw, 2rem) var(--ff-mono);
+        color: var(--spot-ink);
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.25em;
+        overflow-wrap: anywhere;
       }
-      .row__main h4 {
-        margin: 0;
-        font-family: var(--ff-sans);
-        font-weight: 600;
-        font-size: 1rem;
-      }
-      .row__main span {
-        font-family: var(--ff-tc);
-        font-size: 0.85rem;
-        color: var(--muted);
-      }
-      .row__when {
-        font-family: var(--ff-mono);
-        font-size: 0.72rem;
-        color: var(--muted);
-        white-space: nowrap;
-        text-align: right;
-      }
-      .row__when b {
-        color: var(--spot);
-        font-weight: 600;
-        font-size: 0.95rem;
-        display: block;
+      .close .mail:hover { text-decoration-color: var(--ink); }
+      .close__meta { display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; margin-top: 2rem; color: var(--ink-2); }
+      .close__meta dt { font: 500 0.8125rem var(--ff-sans); color: var(--muted); }
+      .traits { margin-top: 2rem; color: var(--muted); font-size: 0.9375rem; }
+      .foot {
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem;
+        border-top: 1px solid var(--line); padding: 1.25rem 0 2rem;
+        font-size: 0.8125rem; color: var(--muted);
       }
 
-      /* ---------- beyond / side projects ---------- */
-      .beyond__intro {
-        font-family: var(--ff-tc);
-        color: var(--ink-2);
-        max-width: 60ch;
-        margin: -0.6rem 0 1.8rem;
-      }
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+      /* ---------- responsive ---------- */
+      @media (max-width: 1080px) {
+        .head { grid-template-columns: 1fr; }
+        .side { justify-items: start; }
+        .facts div { text-align: left; }
+        .cols, .row > summary { grid-template-columns: 2.5rem minmax(0, 2fr) minmax(0, 1.2fr) minmax(0, 1.3fr) 1.5rem; }
+        .cols .c-t, .row > summary .c-t { display: none; }
       }
       @media (max-width: 720px) {
-        .cards {
-          grid-template-columns: 1fr;
+        .facts { gap: 1.25rem; flex-wrap: wrap; }
+        .facts dd { font-size: 1.0625rem; }
+        .actions { flex-wrap: wrap; gap: 1rem 1.5rem; }
+        .cols { display: none; }
+        .ledger__bar { border-bottom: 2px solid var(--ink); }
+        .row > summary {
+          grid-template-columns: 2rem minmax(0, 1fr) 1.25rem;
+          grid-template-areas: "n p x" "n k x" "n r x";
+          gap: 0.15rem 0.75rem;
+          padding: 0.95rem 0.25rem;
         }
-      }
-      .card {
-        border: 1px solid var(--line);
-        background: var(--card);
-        padding: 1.1rem 1.2rem 1.3rem;
-        position: relative;
-        overflow: hidden;
-      }
-      .card::after {
-        content: "";
-        position: absolute;
-        inset: auto -20% -40% auto;
-        width: 60%;
-        height: 70%;
-        background-image: radial-gradient(var(--dither) 0.6px, transparent 0.7px);
-        background-size: 3px 3px;
-        opacity: 0.5;
-        -webkit-mask-image: radial-gradient(circle at bottom right, black, transparent 70%);
-        mask-image: radial-gradient(circle at bottom right, black, transparent 70%);
-        pointer-events: none;
-      }
-      .card__tag {
-        font-family: var(--ff-mono);
-        font-size: 0.62rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--spot);
-      }
-      .card__name {
-        font-family: var(--ff-display);
-        font-weight: 600;
-        font-size: 1.15rem;
-        margin: 0.5rem 0 0.4rem;
-        position: relative;
-        z-index: 1;
-      }
-      .card__stack {
-        font-family: var(--ff-mono);
-        font-size: 0.66rem;
-        letter-spacing: 0.01em;
-        color: var(--muted);
-        margin: 0 0 0.55rem;
-        position: relative;
-        z-index: 1;
-      }
-      .card__desc {
-        font-family: var(--ff-tc);
-        font-size: 0.9rem;
-        color: var(--ink-2);
-        margin: 0;
-        position: relative;
-        z-index: 1;
-      }
-
-      /* ---------- contact / footer ---------- */
-      .contact {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 1px;
-        background: var(--line);
-        border: 1px solid var(--line);
-      }
-      .contact a,
-      .contact div {
-        background: var(--paper);
-        padding: 1.1rem 1.2rem;
-        display: block;
-        transition: background 0.2s;
-      }
-      .contact a:hover {
-        background: var(--spot-soft);
-      }
-      .contact dt {
-        font-family: var(--ff-mono);
-        font-size: 0.62rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 0.35rem;
-      }
-      .contact dd {
-        margin: 0;
-        font-family: var(--ff-mono);
-        font-size: 0.9rem;
-        color: var(--ink);
-        word-break: break-word;
-      }
-      .contact a:hover dd {
-        color: var(--spot);
-      }
-      .foot {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 0.6rem;
-        padding-block: 2rem 2.6rem;
-        font-family: var(--ff-mono);
-        font-size: 0.7rem;
-        letter-spacing: 0.04em;
-        color: var(--muted);
+        .c-n { grid-area: n; }
+        .c-p { grid-area: p; }
+        .c-k { grid-area: k; font-size: 0.875rem; color: var(--muted); }
+        .c-r { grid-area: r; }
+        .c-x { grid-area: x; }
+        .row__body { padding: 0.25rem 0.75rem 1.5rem 2.75rem; }
+        .group__head { padding-left: 0.25rem; padding-right: 0.25rem; }
+        .group__head .when { margin-left: 0; width: 100%; }
+        .split { grid-template-columns: 1fr; }
+        .rows > div, .stack-rows > div { grid-template-columns: 1fr auto; }
+        .rows dt { grid-column: 1 / -1; }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        .scan,
-        .status-dot {
-          animation: none;
-        }
-        .refresh--go {
-          animation: none;
-        }
-        * {
-          transition-duration: 0.001ms !important;
-        }
+        html { scroll-behavior: auto; }
+        *, *::before, *::after, .row::details-content { transition-duration: 0.001ms !important; }
       }
     </style>
   </head>
 
   <body>
-    <div class="refresh" id="refresh" aria-hidden="true"></div>
-
-    <!-- ============ TOP BAR ============ -->
     <header class="bar">
       <div class="wrap bar__in">
-        <a class="brand" href="#top"
-          ><span class="sq"></span> <b>趙奕錡</b>&nbsp;YICHI&nbsp;CHAO</a
-        >
+        <a class="brand" href="#top"><b>趙奕錡</b><span>YICHI CHAO</span></a>
         <div class="controls">
           <div class="seg" role="group" aria-label="Language">
             <button id="lang-zh" aria-pressed="true">中</button>
             <button id="lang-en" aria-pressed="false">EN</button>
           </div>
-          <button class="iconbtn" id="theme" aria-label="切換日／夜模式 Toggle day / night">
-            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <button class="iconbtn" id="theme" type="button" aria-pressed="false" aria-label="夜間模式 Dark mode">
+            <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+            <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>
           </button>
         </div>
       </div>
     </header>
 
     <main class="wrap" id="top">
-      <!-- ============ HERO ============ -->
-      <section class="hero">
-        <div class="hero__lead">
-          <p class="hero__eyebrow">
-            <span class="tick">●</span>
+      <!-- ============ HEAD ============ -->
+      <section class="head">
+        <div>
+          <h1>趙奕錡<span class="rom">YICHI&nbsp;CHAO</span></h1>
+          <p class="role">
             <span lang="zh">軟體工程師 · 全端工程師</span>
             <span lang="en">Software Engineer · Full-Stack Engineer</span>
           </p>
-
-          <h1 class="hero__title">
-            趙奕錡<span class="hero__rom">YICHI&nbsp;CHAO</span>
-          </h1>
-
-          <p class="hero__summary">
-            <span lang="zh"
-              >具備 <b>3+ 年</b>經驗的全端工程師，擅長在無外網的工廠環境，從零打造<span class="spot">工業級 AI 系統</span>與自托管 CI/CD、儲存基礎設施。</span
-            >
-            <span lang="en"
-              >Full-stack engineer with <b>3+ years</b> of experience, building <span class="spot">industrial-grade AI systems</span> and self-hosted CI/CD &amp; storage infrastructure from scratch — even in air-gapped factories.</span
-            >
+          <p class="pos">
+            <span lang="zh">具備 <strong>3+ 年</strong>經驗，擅長在<em>無外網的工廠環境</em>，從零打造工業級 AI 系統、自托管 CI/CD 與 GPU LLM 平台。</span>
+            <span lang="en"><strong>3+ years</strong> building industrial-grade AI systems, self-hosted CI/CD and a GPU LLM platform from scratch — inside <em>air-gapped factories</em>.</span>
           </p>
-
-          <p class="hero__traits">
-            <span lang="zh">積極 · 熱情 · 善於溝通 · 喜歡思考 · 團隊合作</span>
-            <span lang="en">Proactive · Passionate · Communicator · Analytical · Team player</span>
-          </p>
-
-          <div class="hero__cta">
-            <a class="btn btn--solid" href="mailto:timmy85618@gmail.com">
-              <span lang="zh">寄信給我 →</span><span lang="en">Email me →</span>
-            </a>
-            <a class="btn btn--ghost" href="https://github.com/Timmy0618" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-
-          <ul class="specs">
-            <li>
-              <dt lang="zh">經驗</dt><dt lang="en">Experience</dt>
-              <dd>3+ <span lang="zh">年</span><span lang="en">yrs</span></dd>
-            </li>
-            <li>
-              <dt lang="zh">座標</dt><dt lang="en">Based in</dt>
-              <dd><span lang="zh">新竹</span><span lang="en">Hsinchu</span></dd>
-            </li>
-            <li>
-              <dt lang="zh">狀態</dt><dt lang="en">Status</dt>
-              <dd><span lang="zh">在職中</span><span lang="en">Employed</span></dd>
-            </li>
-            <li>
-              <dt lang="zh">役別</dt><dt lang="en">Military</dt>
-              <dd><span lang="zh">役畢</span><span lang="en">Done</span></dd>
-            </li>
-          </ul>
         </div>
-
-        <!-- mock E-Ink defect-detection panel (his TM1 work) -->
-        <div class="panel" aria-hidden="true">
-          <div class="panel__scr"></div>
-          <div class="scan"></div>
-          <div class="panel__label mono">E-INK · DEFECT VIEW</div>
-          <div class="bbox" style="top: 22%; left: 16%; width: 26%; height: 30%;">
-            <span>defect · 0.98</span>
-          </div>
-          <div class="bbox" style="top: 54%; left: 58%; width: 22%; height: 20%;">
-            <span>particle · 0.91</span>
-          </div>
-          <div class="bbox" style="top: 16%; left: 64%; width: 14%; height: 12%;">
-            <span>edge · 0.87</span>
-          </div>
-          <div class="panel__meta mono">
-            <span>YOLO · ONNX · EDGE</span><span><b>● </b>INFER 14ms</span>
+        <div class="side">
+          <dl class="facts">
+            <div><dt><span lang="zh">現職</span><span lang="en">NOW</span></dt><dd><span lang="zh">元太科技</span><span lang="en">E Ink</span></dd></div>
+            <div><dt><span lang="zh">經驗</span><span lang="en">EXPERIENCE</span></dt><dd>3+ <span lang="zh">年</span><span lang="en">yrs</span></dd></div>
+            <div><dt><span lang="zh">地點</span><span lang="en">BASED IN</span></dt><dd><span lang="zh">新竹</span><span lang="en">Hsinchu</span></dd></div>
+            <div><dt><span lang="zh">兵役</span><span lang="en">MILITARY</span></dt><dd><span lang="zh">役畢</span><span lang="en">Done</span></dd></div>
+          </dl>
+          <div class="actions">
+            <a class="btn" href="mailto:timmy85618@gmail.com"><span lang="zh">寄信約面試</span><span lang="en">Email me</span><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+            <a class="link" href="https://github.com/Timmy0618" target="_blank" rel="noopener">GitHub<svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3 3 13"/></svg></a>
           </div>
         </div>
       </section>
 
-      <!-- ============ 01 EXPERIENCE ============ -->
-      <section class="sec" id="experience">
-        <div class="sec__head">
-          <span class="sec__idx">01</span>
-          <h2 class="sec__title">
-            <span lang="zh">工作經驗</span><span lang="en">Experience</span>
-            <small>Experience</small>
-          </h2>
+      <!-- ============ LEDGER ============ -->
+      <section class="ledger" aria-labelledby="ledger-title">
+        <div class="ledger__bar">
+          <h2 id="ledger-title"><span lang="zh">工作經驗與專案</span><span lang="en">Experience &amp; projects</span></h2>
+          <button class="toggle-all" id="toggle-all" type="button" aria-controls="ledger-rows">
+            <span lang="zh">全部展開</span><span lang="en">Expand all</span>
+          </button>
         </div>
 
-        <!-- E Ink -->
-        <article class="job">
-          <div class="job__head">
-            <h3 class="job__co">
-              <span class="status-dot" aria-hidden="true"></span>
-              <span lang="zh">元太科技 E Ink</span><span lang="en">E Ink Holdings</span>
-            </h3>
-            <span class="job__when">
-              <span lang="zh">光電業 500+ · 新竹 · 2022/9 – 在職中</span>
-              <span lang="en">Optoelectronics 500+ · Hsinchu · Sep 2022 – Present</span>
-            </span>
-          </div>
-          <p class="job__role">
-            <span lang="zh">軟體工程師</span><span lang="en">Software Engineer</span>
-          </p>
-          <p class="job__intro">
-            <span lang="zh">主導多個工業 AI 與基礎設施專案，從架構、開發到部署維運完整負責。</span>
-            <span lang="en">Led multiple industrial-AI and infrastructure projects end to end — architecture, build, deploy, and ops.</span>
-          </p>
+        <div class="cols" aria-hidden="true">
+          <span>#</span>
+          <span><span lang="zh">專案</span><span lang="en">PROJECT</span></span>
+          <span class="c-k"><span lang="zh">限制條件</span><span lang="en">CONSTRAINT</span></span>
+          <span class="c-t"><span lang="zh">技術</span><span lang="en">STACK</span></span>
+          <span><span lang="zh">成果</span><span lang="en">RESULT</span></span>
+          <span></span>
+        </div>
 
-          <div class="proj">
-            <h4 class="proj__name">
-              <span lang="zh">TM1 Auto Layout — 面板瑕疵檢測與切割排版系統</span>
-              <span lang="en">TM1 Auto Layout — Panel defect detection & cutting-layout system</span>
-            </h4>
-            <p class="proj__stack mono">
-              React 19 · React Router 7 · FastAPI · ONNX/YOLO · ARQ(Redis) · PostgreSQL · SeaweedFS · Docker
+        <div id="ledger-rows">
+          <!-- E Ink -->
+          <div class="group__head">
+            <h3><span lang="zh">元太科技 E Ink</span><span lang="en">E Ink Holdings</span></h3>
+            <p>
+              <span lang="zh">軟體工程師 · 電子紙顯示器業 500+ · 新竹</span>
+              <span lang="en">Software Engineer · E-paper displays 500+ · Hsinchu</span>
             </p>
-            <ul class="proj__list">
-              <li>
-                <span lang="zh">設計 Frontend / Backend / Edge / 部署 stack 四服務分離架構，將 YOLO/ONNX 推論下放廠端 on-prem edge、雲端後端保持 <em>inference-free</em>，符合資料不出廠限制並降低後端負載。</span>
-                <span lang="en">Architected a four-service split (Frontend / Backend / Edge / deploy stack) — YOLO/ONNX inference runs on the on-prem edge while the cloud backend stays <em>inference-free</em>, so data never leaves the factory and backend load drops.</span>
-              </li>
-              <li>
-                <span lang="zh">以 FastAPI + ARQ(Redis) 建非同步任務佇列，將切割最佳化、偵測評估等長任務與 API 解耦；整合 OpCut / rectpack 切割排版演算法自動產生面板佈局，取代人工排版。</span>
-                <span lang="en">Built FastAPI + ARQ (Redis) async queues to decouple long jobs (cutting optimization, detection eval) from the API; integrated the OpCut / rectpack algorithms to auto-generate panel layouts, replacing manual layout.</span>
-              </li>
-              <li>
-                <span lang="zh">打造 React 19 + React Router 7（檔案式路由）+ Tailwind 4 內部 SPA：@dnd-kit 拖拉排版、react-window 虛擬化處理大量清單、Recharts 視覺化檢測結果，並以 Vitest 撰寫單元測試。</span>
-                <span lang="en">Shipped a React 19 + React Router 7 (file-based routes) + Tailwind 4 internal SPA: @dnd-kit drag-and-drop layout, react-window virtualization for large lists, Recharts result visualization, and Vitest unit tests.</span>
-              </li>
-              <li>
-                <span lang="zh">以 SQLModel + Alembic 管理 schema migration、SeaweedFS(S3) 儲存影像 artifacts、MLflow 追蹤模型版本；雙軌認證 LDAP/AD→JWT 與機器流量 X-API-Key，並以 Docker Compose + GitHub Actions(GHCR) 完成多站點部署。</span>
-                <span lang="en">Managed schema migrations with SQLModel + Alembic, stored image artifacts in SeaweedFS (S3), and tracked model versions in MLflow; dual-track auth (LDAP/AD→JWT for users, X-API-Key for machines) with multi-site delivery via Docker Compose + GitHub Actions (GHCR).</span>
-              </li>
-            </ul>
-            <details class="diag">
-              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
-              <div class="diag__canvas">
+            <span class="when"><span lang="zh">2022/9 – 在職中</span><span lang="en">Sep 2022 – Present</span></span>
+          </div>
+
+          <details class="row">
+            <summary>
+              <span class="c-n">01</span>
+              <span class="c-p"><b>TM1 Auto Layout</b><small><span lang="zh">面板瑕疵檢測與切割排版系統</span><span lang="en">Panel defect detection &amp; cutting layout</span></small></span>
+              <span class="c-k"><span lang="zh">資料不出廠</span><span lang="en">Data stays in the factory</span></span>
+              <span class="c-t">React 19 · FastAPI · YOLO/ONNX · ARQ</span>
+              <span class="c-r"><span lang="zh">取代人工排版</span><span lang="en">Replaced manual layout</span></span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <p class="row__stack">React 19 · React Router 7 · FastAPI · ONNX/YOLO · ARQ(Redis) · PostgreSQL · SeaweedFS · Docker</p>
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">設計 Frontend / Backend / Edge / 部署 stack 四服務分離架構，將 YOLO/ONNX 推論下放廠端 on-prem edge、雲端後端保持 <em>inference-free</em>，符合資料不出廠限制並降低後端負載。</span>
+                  <span lang="en">Architected a four-service split (Frontend / Backend / Edge / deploy stack) — YOLO/ONNX inference runs on the on-prem edge while the cloud backend stays <em>inference-free</em>, so data never leaves the factory and backend load drops.</span>
+                </li>
+                <li>
+                  <span lang="zh">以 FastAPI + ARQ(Redis) 建非同步任務佇列，將切割最佳化、偵測評估等長任務與 API 解耦；整合 OpCut / rectpack 切割排版演算法自動產生面板佈局，取代人工排版。</span>
+                  <span lang="en">Built FastAPI + ARQ (Redis) async queues to decouple long jobs (cutting optimization, detection eval) from the API; integrated the OpCut / rectpack algorithms to auto-generate panel layouts, replacing manual layout.</span>
+                </li>
+                <li>
+                  <span lang="zh">打造 React 19 + React Router 7（檔案式路由）+ Tailwind 4 內部 SPA：@dnd-kit 拖拉排版、react-window 虛擬化處理大量清單、Recharts 視覺化檢測結果，並以 Vitest 撰寫單元測試。</span>
+                  <span lang="en">Shipped a React 19 + React Router 7 (file-based routes) + Tailwind 4 internal SPA: @dnd-kit drag-and-drop layout, react-window virtualization for large lists, Recharts result visualization, and Vitest unit tests.</span>
+                </li>
+                <li>
+                  <span lang="zh">以 SQLModel + Alembic 管理 schema migration、SeaweedFS(S3) 儲存影像 artifacts、MLflow 追蹤模型版本；雙軌認證 LDAP/AD→JWT 與機器流量 X-API-Key，並以 Docker Compose + GitHub Actions(GHCR) 完成多站點部署。</span>
+                  <span lang="en">Managed schema migrations with SQLModel + Alembic, stored image artifacts in SeaweedFS (S3), and tracked model versions in MLflow; dual-track auth (LDAP/AD→JWT for users, X-API-Key for machines) with multi-site delivery via Docker Compose + GitHub Actions (GHCR).</span>
+                </li>
+              </ul>
+              <figure class="diag">
+                <figcaption><span lang="zh">系統架構</span><span lang="en">ARCHITECTURE</span></figcaption>
                 <pre class="mermaid">
 flowchart LR
   U([User])
@@ -1092,44 +492,46 @@ flowchart LR
   ED --&gt;|X-API-Key| BE
   ED --&gt;|upload| S3
   MLF -. model .-&gt; ED
-  classDef edge fill:#fde68a,stroke:#d97706,color:#000
-  classDef server fill:#bfdbfe,stroke:#2563eb,color:#000
+  classDef edge fill:var(--zone-edge),stroke:var(--zone-edge-line),stroke-dasharray:6 4,color:var(--ink)
+  classDef server fill:var(--zone-cloud),stroke:var(--zone-cloud-line),color:var(--ink)
   class EDGE,ED edge
   class CLOUD,FE,BE,PG,RD,S3,MLF server
                 </pre>
-              </div>
-            </details>
-          </div>
+              </figure>
+            </div>
+          </details>
 
-          <div class="proj">
-            <h4 class="proj__name">
-              <span lang="zh">TM2 Cross Section — 晶圓 / 材料剖面影像 AI 量測平台</span>
-              <span lang="en">TM2 Cross Section — Wafer / material cross-section AI measurement platform</span>
-            </h4>
-            <p class="proj__stack mono">
-              Python · FastAPI · YOLO + SAM2 · APScheduler · SeaweedFS · React Router 7 · Monorepo
-            </p>
-            <ul class="proj__list">
-              <li>
-                <span lang="zh">自動從 SMB 網路磁碟或本地資料夾擷取剖面影像（OP/CT/MA 位置），串接 YOLO + SAM2 推論管線定位特徵，自動裁切、量測尺寸並萃取工程數據，於 Web UI 呈現量測結果、統計圖表與 Lot/Round 批次追蹤。</span>
-                <span lang="en">Pulls cross-section images (OP/CT/MA positions) from SMB drives or local folders, runs a YOLO + SAM2 pipeline to locate features, then auto-crops, measures, and extracts engineering data — surfaced in a Web UI with charts and Lot/Round batch tracking.</span>
-              </li>
-              <li>
-                <span lang="zh">後端採 Router→Controller→Service 分層、統一 BaseResponse[T] 回應封裝；以 APScheduler 設計背景排程（擷取→推論→裁切→量測→上傳、上傳重試與清理）。</span>
-                <span lang="en">Layered the backend as Router→Controller→Service with a unified BaseResponse[T] envelope; built APScheduler workflows (ingest→infer→crop→measure→upload, plus upload-retry and cleanup).</span>
-              </li>
-              <li>
-                <span lang="zh">採 In-memory 影像工作流（全程記憶體傳遞 bytes、無磁碟暫存）與 Sync/Async 雙引擎隔離（HTTP 走 asyncpg、排程走 sync engine），降低 I/O 與事件迴圈衝突。</span>
-                <span lang="en">Adopted an in-memory image workflow (bytes passed through memory, no disk temp files) and sync/async dual-engine isolation (asyncpg for HTTP, a sync engine for scheduling) to cut I/O and event-loop contention.</span>
-              </li>
-              <li>
-                <span lang="zh">規劃邊緣解耦架構（Edge Worker 僅以 HTTP 回傳、不直連 DB，schema 變更只由後端負責），透過 DATABASE_URL 支援 PostgreSQL / Oracle / MySQL 多後端，並以 MLflow 管理模型版本、預建 image tarball 支援離線部署。</span>
-                <span lang="en">Designed an edge-decoupled architecture (workers return over HTTP only, never touch the DB; schema owned solely by the backend), switchable across PostgreSQL / Oracle / MySQL via DATABASE_URL, with MLflow model versioning and prebuilt image tarballs for offline deployment.</span>
-              </li>
-            </ul>
-            <details class="diag">
-              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
-              <div class="diag__canvas">
+          <details class="row">
+            <summary>
+              <span class="c-n">02</span>
+              <span class="c-p"><b>TM2 Cross Section</b><small><span lang="zh">晶圓 / 材料剖面影像 AI 量測平台</span><span lang="en">Cross-section image AI measurement</span></small></span>
+              <span class="c-k"><span lang="zh">Edge 不直連 DB · 離線部署</span><span lang="en">Edge never touches the DB · offline deploy</span></span>
+              <span class="c-t">YOLO + SAM2 · FastAPI · APScheduler</span>
+              <span class="c-r"><span lang="zh">擷取→量測全自動</span><span lang="en">Ingest → measure, fully automated</span></span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <p class="row__stack">Python · FastAPI · YOLO + SAM2 · APScheduler · SeaweedFS · React Router 7 · Monorepo</p>
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">自動從 SMB 網路磁碟或本地資料夾擷取剖面影像（OP/CT/MA 位置），串接 YOLO + SAM2 推論管線定位特徵，自動裁切、量測尺寸並萃取工程數據，於 Web UI 呈現量測結果、統計圖表與 Lot/Round 批次追蹤。</span>
+                  <span lang="en">Pulls cross-section images (OP/CT/MA positions) from SMB drives or local folders, runs a YOLO + SAM2 pipeline to locate features, then auto-crops, measures, and extracts engineering data — surfaced in a Web UI with charts and Lot/Round batch tracking.</span>
+                </li>
+                <li>
+                  <span lang="zh">後端採 Router→Controller→Service 分層、統一 BaseResponse[T] 回應封裝；以 APScheduler 設計背景排程（擷取→推論→裁切→量測→上傳、上傳重試與清理）。</span>
+                  <span lang="en">Layered the backend as Router→Controller→Service with a unified BaseResponse[T] envelope; built APScheduler workflows (ingest→infer→crop→measure→upload, plus upload-retry and cleanup).</span>
+                </li>
+                <li>
+                  <span lang="zh">採 In-memory 影像工作流（全程記憶體傳遞 bytes、無磁碟暫存）與 Sync/Async 雙引擎隔離（HTTP 走 asyncpg、排程走 sync engine），降低 I/O 與事件迴圈衝突。</span>
+                  <span lang="en">Adopted an in-memory image workflow (bytes passed through memory, no disk temp files) and sync/async dual-engine isolation (asyncpg for HTTP, a sync engine for scheduling) to cut I/O and event-loop contention.</span>
+                </li>
+                <li>
+                  <span lang="zh">規劃邊緣解耦架構（Edge Worker 僅以 HTTP 回傳、不直連 DB，schema 變更只由後端負責），透過 DATABASE_URL 支援 PostgreSQL / Oracle / MySQL 多後端，並以 MLflow 管理模型版本、預建 image tarball 支援離線部署。</span>
+                  <span lang="en">Designed an edge-decoupled architecture (workers return over HTTP only, never touch the DB; schema owned solely by the backend), switchable across PostgreSQL / Oracle / MySQL via DATABASE_URL, with MLflow model versioning and prebuilt image tarballs for offline deployment.</span>
+                </li>
+              </ul>
+              <figure class="diag">
+                <figcaption><span lang="zh">系統架構</span><span lang="en">ARCHITECTURE</span></figcaption>
                 <pre class="mermaid">
 flowchart LR
   subgraph EDGE [Factory Edge]
@@ -1148,44 +550,46 @@ flowchart LR
   MS --&gt;|crops| S3
   FE[React Router 7 SPA] &lt;--&gt;|Axios| API
   MLF -. model .-&gt; EW
-  classDef edge fill:#fde68a,stroke:#d97706,color:#000
-  classDef server fill:#bfdbfe,stroke:#2563eb,color:#000
+  classDef edge fill:var(--zone-edge),stroke:var(--zone-edge-line),stroke-dasharray:6 4,color:var(--ink)
+  classDef server fill:var(--zone-cloud),stroke:var(--zone-cloud-line),color:var(--ink)
   class EDGE,SMB,EW,MS edge
   class CENTER,API,DB,S3,MLF server
                 </pre>
-              </div>
-            </details>
-          </div>
+              </figure>
+            </div>
+          </details>
 
-          <div class="proj">
-            <h4 class="proj__name">
-              <span lang="zh">自托管 CI/CD + MLOps 基礎設施平台（內網 air-gapped）</span>
-              <span lang="en">Self-hosted CI/CD + MLOps platform (air-gapped)</span>
-            </h4>
-            <p class="proj__stack mono">
-              Docker Compose · Traefik v3 · SeaweedFS · Gitea Actions · Jenkins(JCasC) · Docker Registry · MLflow · DVC
-            </p>
-            <ul class="proj__list">
-              <li>
-                <span lang="zh">於完全無外網環境從零整合 10+ 服務（Gitea + Actions、Jenkins、Registry、MLflow、PostgreSQL 17、pgAdmin），單機可起、儲存可水平擴充。</span>
-                <span lang="en">Integrated 10+ services from scratch with zero internet access (Gitea + Actions, Jenkins, Registry, MLflow, PostgreSQL 17, pgAdmin) — single-host bootstrap with horizontally scalable storage.</span>
-              </li>
-              <li>
-                <span lang="zh">以 SeaweedFS（Master / Volume / Filer）建 S3 相容分散式儲存叢集，作為單一後端統一承載 Git LFS、Docker Registry blobs、Jenkins / MLflow artifacts 與 DVC，並完成 Volume 跨 VM 水平擴充。</span>
-                <span lang="en">Built an S3-compatible SeaweedFS cluster (Master / Volume / Filer) as a single backend for Git LFS, Docker Registry blobs, Jenkins / MLflow artifacts, and DVC — scaling Volume nodes horizontally across VMs.</span>
-              </li>
-              <li>
-                <span lang="zh">以 Traefik v3 取代 nginx（Docker label 動態路由 + 多 entrypoint TLS 單點終止），設計 proxy / db / storage / cicd 四層網段隔離與 IAM / BasicAuth 存取控制，對外僅暴露必要 HTTPS 端點。</span>
-                <span lang="en">Replaced nginx with Traefik v3 (Docker-label dynamic routing + single-point multi-entrypoint TLS); designed four isolated networks (proxy / db / storage / cicd) with IAM / BasicAuth, exposing only required HTTPS endpoints.</span>
-              </li>
-              <li>
-                <span lang="zh">撰寫 Bash 一鍵部署 / 初始化腳本（DB、S3 bucket、Registry GC、runner 註冊），Jenkins 以 JCasC 宣告式設定並採 Docker-outside-of-Docker 建置；以內網 Nexus proxy 解決離線套件安裝，並完成 SeaweedFS 從 s3.json 遷移到 IAM identity 及叢集版本升級。</span>
-                <span lang="en">Wrote idempotent Bash deploy/init scripts (DB, S3 bucket, registry GC, runner registration), configured Jenkins declaratively via JCasC with Docker-outside-of-Docker builds, solved offline installs through an internal Nexus proxy, and migrated SeaweedFS from s3.json to IAM identities alongside a cluster version upgrade.</span>
-              </li>
-            </ul>
-            <details class="diag">
-              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
-              <div class="diag__canvas">
+          <details class="row">
+            <summary>
+              <span class="c-n">03</span>
+              <span class="c-p"><b><span lang="zh">自托管 CI/CD + MLOps 平台</span><span lang="en">Self-hosted CI/CD + MLOps</span></b><small><span lang="zh">內網 air-gapped 基礎設施</span><span lang="en">Air-gapped infrastructure</span></small></span>
+              <span class="c-k"><span lang="zh">完全無外網</span><span lang="en">Zero internet access</span></span>
+              <span class="c-t">Traefik v3 · SeaweedFS · Gitea · Jenkins</span>
+              <span class="c-r"><span lang="zh">10+ 服務整合</span><span lang="en">10+ services integrated</span></span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <p class="row__stack">Docker Compose · Traefik v3 · SeaweedFS · Gitea Actions · Jenkins(JCasC) · Docker Registry · MLflow · DVC</p>
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">於完全無外網環境從零整合 10+ 服務（Gitea + Actions、Jenkins、Registry、MLflow、PostgreSQL 17、pgAdmin），單機可起、儲存可水平擴充。</span>
+                  <span lang="en">Integrated 10+ services from scratch with zero internet access (Gitea + Actions, Jenkins, Registry, MLflow, PostgreSQL 17, pgAdmin) — single-host bootstrap with horizontally scalable storage.</span>
+                </li>
+                <li>
+                  <span lang="zh">以 SeaweedFS（Master / Volume / Filer）建 S3 相容分散式儲存叢集，作為單一後端統一承載 Git LFS、Docker Registry blobs、Jenkins / MLflow artifacts 與 DVC，並完成 Volume 跨 VM 水平擴充。</span>
+                  <span lang="en">Built an S3-compatible SeaweedFS cluster (Master / Volume / Filer) as a single backend for Git LFS, Docker Registry blobs, Jenkins / MLflow artifacts, and DVC — scaling Volume nodes horizontally across VMs.</span>
+                </li>
+                <li>
+                  <span lang="zh">以 Traefik v3 取代 nginx（Docker label 動態路由 + 多 entrypoint TLS 單點終止），設計 proxy / db / storage / cicd 四層網段隔離與 IAM / BasicAuth 存取控制，對外僅暴露必要 HTTPS 端點。</span>
+                  <span lang="en">Replaced nginx with Traefik v3 (Docker-label dynamic routing + single-point multi-entrypoint TLS); designed four isolated networks (proxy / db / storage / cicd) with IAM / BasicAuth, exposing only required HTTPS endpoints.</span>
+                </li>
+                <li>
+                  <span lang="zh">撰寫 Bash 一鍵部署 / 初始化腳本（DB、S3 bucket、Registry GC、runner 註冊），Jenkins 以 JCasC 宣告式設定並採 Docker-outside-of-Docker 建置；以內網 Nexus proxy 解決離線套件安裝，並完成 SeaweedFS 從 s3.json 遷移到 IAM identity 及叢集版本升級。</span>
+                  <span lang="en">Wrote idempotent Bash deploy/init scripts (DB, S3 bucket, registry GC, runner registration), configured Jenkins declaratively via JCasC with Docker-outside-of-Docker builds, solved offline installs through an internal Nexus proxy, and migrated SeaweedFS from s3.json to IAM identities alongside a cluster version upgrade.</span>
+                </li>
+              </ul>
+              <figure class="diag">
+                <figcaption><span lang="zh">系統架構</span><span lang="en">ARCHITECTURE</span></figcaption>
                 <pre class="mermaid">
 flowchart TB
   DEV([Developer / CI]) --&gt;|HTTPS| TR[Traefik v3 · TLS gateway]
@@ -1200,39 +604,41 @@ flowchart TB
   JEN --&gt;|artifacts| S3
   DEV -. DVC .-&gt; S3
                 </pre>
-              </div>
-            </details>
-          </div>
+              </figure>
+            </div>
+          </details>
 
-          <div class="proj">
-            <h4 class="proj__name">
-              <span lang="zh">自架 GPU LLM 平台 — vLLM × Open WebUI × RAG</span>
-              <span lang="en">Self-hosted GPU LLM platform — vLLM × Open WebUI × RAG</span>
-            </h4>
-            <p class="proj__stack mono">
-              vLLM · Open WebUI · SearXNG · Firecrawl · n8n · Docker Compose · NVIDIA GPU
-            </p>
-            <ul class="proj__list">
-              <li>
-                <span lang="zh">從零打造一套<em>資料不出境</em>的企業級 LLM 服務平台，以 Docker Compose 編排 9 個服務，供全公司統一使用對話與文件問答，降低各部門導入 AI 的門檻。</span>
-                <span lang="en">Built a <em>data-never-leaves</em> enterprise LLM platform from scratch — 9 services orchestrated with Docker Compose — giving the whole company a unified chat + document-Q&A entry point and lowering the bar for AI adoption.</span>
-              </li>
-              <li>
-                <span lang="zh">在<em>單張 NVIDIA GPU</em> 上以 vLLM 服務 27B 量化模型：採 FP8 權重 + FP8 KV cache、gpu-memory-utilization 推到 0.9，同時容納 256K 長上下文，並提供 OpenAI 相容 /v1 API 讓既有程式無痛切換。</span>
-                <span lang="en">Served a 27B quantized model on a <em>single NVIDIA GPU</em> with vLLM — FP8 weights + FP8 KV cache, gpu-memory-utilization pushed to 0.9 to fit a 256K context — exposed via an OpenAI-compatible /v1 API for drop-in replacement.</span>
-              </li>
-              <li>
-                <span lang="zh">串接 SearXNG（自架聚合式搜尋）與 Firecrawl（網頁→Markdown，由原始碼自建）形成完整 RAG 迴路「搜尋→爬取→回答」；啟用 Hermes tool-call parser + reasoning parser 支援 Tool Calling 與思考模式。</span>
-                <span lang="en">Wired SearXNG (self-hosted metasearch) and Firecrawl (web→Markdown, built from source) into a full RAG loop — search → crawl → answer — and enabled the Hermes tool-call parser + reasoning parser for tool calling and chain-of-thought.</span>
-              </li>
-              <li>
-                <span lang="zh">自製 Open WebUI Firecrawl 工具（Pydantic Valves 可配置、支援單頁 / 整站爬取與連結地圖），以 n8n 串接 LLM 與外部系統做低程式碼自動化；另導入 IBM watsonx AutoML 供非技術同仁建立預測模型。</span>
-                <span lang="en">Wrote a custom Open WebUI Firecrawl tool (configurable Pydantic Valves; single-page / full-site crawl + link map), used n8n for low-code automation linking the LLM to external systems, and additionally rolled out IBM watsonx AutoML for non-technical staff to build predictive models.</span>
-              </li>
-            </ul>
-            <details class="diag">
-              <summary><span lang="zh">系統架構圖</span><span lang="en">Architecture</span></summary>
-              <div class="diag__canvas">
+          <details class="row">
+            <summary>
+              <span class="c-n">04</span>
+              <span class="c-p"><b><span lang="zh">自架 GPU LLM 平台</span><span lang="en">Self-hosted GPU LLM platform</span></b><small>vLLM × Open WebUI × RAG</small></span>
+              <span class="c-k"><span lang="zh">資料不出境 · 單張 GPU</span><span lang="en">Data stays in-house · one GPU</span></span>
+              <span class="c-t">vLLM · FP8 · SearXNG · Firecrawl</span>
+              <span class="c-r">27B · 256K ctx</span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <p class="row__stack">vLLM · Open WebUI · SearXNG · Firecrawl · n8n · Docker Compose · NVIDIA GPU</p>
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">從零打造一套<em>資料不出境</em>的企業級 LLM 服務平台，以 Docker Compose 編排 9 個服務，供全公司統一使用對話與文件問答，降低各部門導入 AI 的門檻。</span>
+                  <span lang="en">Built a <em>data-never-leaves</em> enterprise LLM platform from scratch — 9 services orchestrated with Docker Compose — giving the whole company a unified chat + document-Q&amp;A entry point and lowering the bar for AI adoption.</span>
+                </li>
+                <li>
+                  <span lang="zh">在<em>單張 NVIDIA GPU</em> 上以 vLLM 服務 27B 量化模型：採 FP8 權重 + FP8 KV cache、gpu-memory-utilization 推到 0.9，同時容納 256K 長上下文，並提供 OpenAI 相容 /v1 API 讓既有程式無痛切換。</span>
+                  <span lang="en">Served a 27B quantized model on a <em>single NVIDIA GPU</em> with vLLM — FP8 weights + FP8 KV cache, gpu-memory-utilization pushed to 0.9 to fit a 256K context — exposed via an OpenAI-compatible /v1 API for drop-in replacement.</span>
+                </li>
+                <li>
+                  <span lang="zh">串接 SearXNG（自架聚合式搜尋）與 Firecrawl（網頁→Markdown，由原始碼自建）形成完整 RAG 迴路「搜尋→爬取→回答」；啟用 Hermes tool-call parser + reasoning parser 支援 Tool Calling 與思考模式。</span>
+                  <span lang="en">Wired SearXNG (self-hosted metasearch) and Firecrawl (web→Markdown, built from source) into a full RAG loop — search → crawl → answer — and enabled the Hermes tool-call parser + reasoning parser for tool calling and chain-of-thought.</span>
+                </li>
+                <li>
+                  <span lang="zh">自製 Open WebUI Firecrawl 工具（Pydantic Valves 可配置、支援單頁 / 整站爬取與連結地圖），以 n8n 串接 LLM 與外部系統做低程式碼自動化；另導入 IBM watsonx AutoML 供非技術同仁建立預測模型。</span>
+                  <span lang="en">Wrote a custom Open WebUI Firecrawl tool (configurable Pydantic Valves; single-page / full-site crawl + link map), used n8n for low-code automation linking the LLM to external systems, and additionally rolled out IBM watsonx AutoML for non-technical staff to build predictive models.</span>
+                </li>
+              </ul>
+              <figure class="diag">
+                <figcaption><span lang="zh">系統架構</span><span lang="en">ARCHITECTURE</span></figcaption>
                 <pre class="mermaid">
 flowchart TB
   U([User]) --&gt; WUI[Open WebUI]
@@ -1244,304 +650,236 @@ flowchart TB
   FC --&gt; PW[Playwright]
   FC --&gt; INF[(Redis · RabbitMQ · PG)]
                 </pre>
-              </div>
-            </details>
+              </figure>
+            </div>
+          </details>
+
+          <details class="row">
+            <summary>
+              <span class="c-n">05</span>
+              <span class="c-p"><b><span lang="zh">生產自動化與 AI 檢測</span><span lang="en">Production automation &amp; AI inspection</span></b><small><span lang="zh">早期專案</span><span lang="en">Earlier work</span></small></span>
+              <span class="c-k"><span lang="zh">材料產線監控</span><span lang="en">Material production line</span></span>
+              <span class="c-t">AI prediction · defect classification</span>
+              <span class="c-r"><span lang="zh">−50% 人力監控時間</span><span lang="en">−50% manual monitoring time</span></span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">導入材料生產自動化與監控、建立 AI 預測模型，<em>節省 50% 人力監控時間</em>。</span>
+                  <span lang="en">Material-production automation &amp; monitoring with AI prediction models — <em>−50% manual monitoring time</em>.</span>
+                </li>
+                <li>
+                  <span lang="zh">以 AI 取代傳統 AOI 進行缺陷分類。</span>
+                  <span lang="en">Replaced traditional AOI with AI defect classification.</span>
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- PChome -->
+          <div class="group__head">
+            <h3><span lang="zh">網路家庭 PChome</span><span lang="en">PChome Online</span></h3>
+            <p>
+              <span lang="zh">全端工程師 · 網際網路業 500+ · 台北大安</span>
+              <span lang="en">Full-Stack Engineer · Internet 500+ · Daan, Taipei</span>
+            </p>
+            <span class="when"><span lang="zh">2021/4 – 2022/5 · 1 年 2 個月</span><span lang="en">Apr 2021 – May 2022 · 1 yr 2 mo</span></span>
           </div>
 
-          <p class="earlier">
-            <span lang="zh">早期：導入材料生產自動化與監控、建立 AI 預測模型，<em>節省 50% 監控人力</em>；以 AI 取代傳統 AOI 進行缺陷分類。</span>
-            <span lang="en">Earlier: material-production automation & monitoring with AI models (<em>−50% monitoring time</em>); replaced traditional AOI with AI defect detection.</span>
+          <details class="row">
+            <summary>
+              <span class="c-n">06</span>
+              <span class="c-p"><b><span lang="zh">倉儲系統與演算法</span><span lang="en">Warehouse systems &amp; algorithms</span></b><small><span lang="zh">揀貨路徑 · 智能裝箱 · 貨主 API</span><span lang="en">Picking routes · bin packing · merchant APIs</span></small></span>
+              <span class="c-k"><span lang="zh">多訂單即時出貨</span><span lang="en">Multi-order, real-time</span></span>
+              <span class="c-t">PHP · Vue.js · MySQL · MSSQL · Docker</span>
+              <span class="c-r"><span lang="zh">−40% / −50% 反應時間</span><span lang="en">−40% / −50% response time</span></span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <p class="row__stack">PHP · Vue.js · MySQL · MSSQL · Docker · JavaScript</p>
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">設計並實作最佳揀貨路徑演算法，縮短倉庫揀貨時間，<em>節省 40% 反應時間</em>。</span>
+                  <span lang="en">Designed an optimal picking-route algorithm that shortened warehouse picking time — <em>−40% response time</em>.</span>
+                </li>
+                <li>
+                  <span lang="zh">開發智能裝箱演算法，多筆訂單時自動產生最佳裝箱方案，<em>節省 50% 反應時間</em>。</span>
+                  <span lang="en">Built a smart bin-packing algorithm generating optimal packing plans for multi-order batches — <em>−50% response time</em>.</span>
+                </li>
+                <li>
+                  <span lang="zh">設計多個 API 與 DB Schema，提供貨主彈性的倉庫系統接口（進貨／出貨／庫存／客退）。</span>
+                  <span lang="en">Designed multiple APIs and DB schemas, giving merchants a flexible warehouse interface (inbound / outbound / inventory / returns).</span>
+                </li>
+                <li>
+                  <span lang="zh">以 Docker 建置 PHP / MySQL / Apache / MSSQL / phpMyAdmin 開發環境，統一團隊開發框架。</span>
+                  <span lang="en">Built Docker dev environments (PHP / MySQL / Apache / MSSQL / phpMyAdmin) for a consistent team setup.</span>
+                </li>
+                <li>
+                  <span lang="zh">以 PHP 開發 Telegram Bot 即時監控倉庫現場、異常即時通知，提高應急反應速度。</span>
+                  <span lang="en">Built a PHP Telegram bot for real-time warehouse monitoring with instant anomaly alerts.</span>
+                </li>
+                <li>
+                  <span lang="zh">以 Vue.js 開發多個倉庫系統前端界面與功能，提升使用體驗與可維護性。</span>
+                  <span lang="en">Shipped multiple Vue.js warehouse frontends, improving UX and maintainability.</span>
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Side projects -->
+          <div class="group__head">
+            <h3><span lang="zh">工作之外</span><span lang="en">Beyond the day job</span></h3>
+            <p><span lang="zh">個人專案</span><span lang="en">Side projects</span></p>
+          </div>
+          <p class="group__note">
+            <span lang="zh">自費購入一台 GB10 作為個人 AI 工作站，自架 OpenClaw / Hermes，持續探索本地 LLM 與 Agent。也做過 NFT 智能合約部署、Unity 2D 小遊戲，並每日刷 LeetCode 保持手感。</span>
+            <span lang="en">I self-funded a GB10 as a personal AI workstation, self-hosting OpenClaw / Hermes to explore local LLMs and agents. Also: NFT smart contracts, Unity 2D games, and daily LeetCode to stay sharp.</span>
           </p>
-        </article>
 
-        <!-- PChome -->
-        <article class="job">
-          <div class="job__head">
-            <h3 class="job__co">
-              <span lang="zh">網路家庭 PChome</span><span lang="en">PChome Online</span>
-            </h3>
-            <span class="job__when">
-              <span lang="zh">網際網路業 500+ · 台北大安 · 2021/4 – 2022/5</span>
-              <span lang="en">Internet 500+ · Daan, Taipei · Apr 2021 – May 2022</span>
-            </span>
-          </div>
-          <p class="job__role">
-            <span lang="zh">全端工程師 · 1 年 2 個月</span><span lang="en">Full-Stack Engineer · 1 yr 2 mo</span>
-          </p>
+          <details class="row">
+            <summary>
+              <span class="c-n">07</span>
+              <span class="c-p"><b>Auto-Clip</b><small><span lang="zh">YouTube 直播 AI 自動剪輯</span><span lang="en">AI highlights from YouTube live VODs</span></small></span>
+              <span class="c-k"><span lang="zh">本機 GPU + 本地 LLM</span><span lang="en">Local GPU + local LLM</span></span>
+              <span class="c-t">vLLM(Qwen) · faster-whisper · ffmpeg</span>
+              <span class="c-r"><span lang="zh">零雲端成本</span><span lang="en">Zero cloud cost</span></span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <p class="row__stack">Python · vLLM(Qwen) · faster-whisper · ffmpeg · FastAPI · React</p>
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">把授權的 YouTube 直播 VOD 自動轉成附繁中字幕的精華短影音（16:9 + 9:16 Shorts）。</span>
+                  <span lang="en">Turns licensed YouTube live VODs into highlight shorts (16:9 + 9:16) with zh-TW subtitles.</span>
+                </li>
+                <li>
+                  <span lang="zh">核心是<b>可斷點續跑的狀態機 pipeline</b>，融合聊天密度／heatmap／音訊能量三訊號挑候選。</span>
+                  <span lang="en">A <b>resumable state-machine pipeline</b> fuses three signals (chat density / heatmap / audio energy) to pick candidates.</span>
+                </li>
+                <li>
+                  <span lang="zh">全程在本機 GPU + 本地 LLM 運行、<b>零雲端成本</b>，並有人在迴路的審核閉環可只重算單一片段。約 6.4k 行 Python/TS。</span>
+                  <span lang="en">Runs entirely on a local GPU + local LLM at <b>zero cloud cost</b>, with a human-in-the-loop review loop that recomputes a single clip at a time. ~6.4k lines of Python/TS.</span>
+                </li>
+              </ul>
+            </div>
+          </details>
 
-          <div class="proj">
-            <p class="proj__stack mono" style="margin-top: 0">
-              PHP · Vue.js · MySQL · MSSQL · Docker · JavaScript
-            </p>
-            <ul class="proj__list">
-              <li>
-                <span lang="zh">設計並實作最佳揀貨路徑演算法，縮短倉庫揀貨時間，<em>節省 40% 反應時間</em>。</span>
-                <span lang="en">Designed an optimal picking-route algorithm that shortened warehouse picking time — <em>−40% response time</em>.</span>
-              </li>
-              <li>
-                <span lang="zh">開發智能裝箱演算法，多筆訂單時自動產生最佳裝箱方案，<em>節省 50% 反應時間</em>。</span>
-                <span lang="en">Built a smart bin-packing algorithm generating optimal packing plans for multi-order batches — <em>−50% response time</em>.</span>
-              </li>
-              <li>
-                <span lang="zh">設計多個 API 與 DB Schema，提供貨主彈性的倉庫系統接口（進貨／出貨／庫存／客退）。</span>
-                <span lang="en">Designed multiple APIs and DB schemas, giving merchants a flexible warehouse interface (inbound / outbound / inventory / returns).</span>
-              </li>
-              <li>
-                <span lang="zh">以 Docker 建置 PHP / MySQL / Apache / MSSQL / phpMyAdmin 開發環境，統一團隊開發框架。</span>
-                <span lang="en">Built Docker dev environments (PHP / MySQL / Apache / MSSQL / phpMyAdmin) for a consistent team setup.</span>
-              </li>
-              <li>
-                <span lang="zh">以 PHP 開發 Telegram Bot 即時監控倉庫現場、異常即時通知，提高應急反應速度。</span>
-                <span lang="en">Built a PHP Telegram bot for real-time warehouse monitoring with instant anomaly alerts.</span>
-              </li>
-              <li>
-                <span lang="zh">以 Vue.js 開發多個倉庫系統前端界面與功能，提升使用體驗與可維護性。</span>
-                <span lang="en">Shipped multiple Vue.js warehouse frontends, improving UX and maintainability.</span>
-              </li>
-            </ul>
-          </div>
-        </article>
-      </section>
-
-      <!-- ============ 02 SKILLS ============ -->
-      <section class="sec" id="skills">
-        <div class="sec__head">
-          <span class="sec__idx">02</span>
-          <h2 class="sec__title">
-            <span lang="zh">技術能力</span><span lang="en">Technical Skills</span>
-            <small>Stack</small>
-          </h2>
-        </div>
-        <div class="skills">
-          <div class="skill">
-            <div class="skill__cat"><span lang="zh">語言</span><span lang="en">Languages</span></div>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">Bash</span><span class="chip">SQL</span>
+          <details class="row">
+            <summary>
+              <span class="c-n">08</span>
+              <span class="c-p"><b><span lang="zh">AI 虛擬小鎮</span><span lang="en">AI Virtual Town</span></b><small><span lang="zh">LLM agent 驅動的開放世界 RPG</span><span lang="en">Open-world RPG run by LLM agents</span></small></span>
+              <span class="c-k"><span lang="zh">角色只輸出 Intent</span><span lang="en">Characters emit intent only</span></span>
+              <span class="c-t">FastAPI · LiteLLM · vLLM(Qwen 35B)</span>
+              <span class="c-r"><span lang="zh">推論 ~20× 加速</span><span lang="en">~20× faster inference</span></span>
+              <span class="c-x" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <p class="row__stack">Python · FastAPI · LiteLLM · vLLM(Qwen 35B) · React 19</p>
+              <ul class="row__list">
+                <li>
+                  <span lang="zh">由 LLM 自主驅動的開放世界 RPG：角色不是腳本 NPC，而是各有人格、記憶與目標的 agent，在共享世界裡自行行動互動。</span>
+                  <span lang="en">An LLM-driven open-world RPG where characters aren't scripted NPCs but agents with their own persona, memory, and goals.</span>
+                </li>
+                <li>
+                  <span lang="zh">設計 <b>World Engine 中央仲裁架構</b>（角色只輸出 Intent、由 adjudicator 決定結果），自架本地 vLLM 推論<b>加速約 20×</b>。</span>
+                  <span lang="en">Built a <b>central World Engine arbitration architecture</b> (characters emit only "intent"; an adjudicator resolves outcomes) and self-hosted local vLLM for <b>~20× faster inference</b>.</span>
+                </li>
+                <li>
+                  <span lang="zh">建立可回歸測試的世界活性評鑑 rubric，把「世界有沒有活起來」變成可量化指標。</span>
+                  <span lang="en">Created a regression-testable rubric that turns "is the world alive?" into a measurable metric.</span>
+                </li>
+              </ul>
             </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat"><span lang="zh">後端</span><span lang="en">Backend</span></div>
-            <div class="chips">
-              <span class="chip">FastAPI</span><span class="chip">Node.js</span><span class="chip">SQLModel</span><span class="chip">SQLAlchemy</span><span class="chip">Alembic</span><span class="chip">Redis + ARQ</span><span class="chip">APScheduler</span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat"><span lang="zh">前端</span><span lang="en">Frontend</span></div>
-            <div class="chips">
-              <span class="chip">React 19</span><span class="chip">React Router 7</span><span class="chip">Vue.js</span><span class="chip">Tailwind CSS</span><span class="chip">Vite</span><span class="chip">jQuery</span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat">AI / ML · CV</div>
-            <div class="chips">
-              <span class="chip">YOLO</span><span class="chip">SAM2</span><span class="chip">ONNX Runtime</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">OpenCV</span><span class="chip">MLflow</span><span class="chip">DVC</span><span class="chip">Edge Inference</span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat">LLM / GenAI</div>
-            <div class="chips">
-              <span class="chip">vLLM</span><span class="chip">LLM Serving</span><span class="chip">RAG</span><span class="chip">Tool Calling</span><span class="chip">FP8 量化</span><span class="chip">Open WebUI</span><span class="chip">SearXNG</span><span class="chip">Firecrawl</span><span class="chip">n8n</span><span class="chip">IBM watsonx</span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat"><span lang="zh">資料庫</span><span lang="en">Databases</span></div>
-            <div class="chips">
-              <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MSSQL</span><span class="chip">Oracle</span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat">DevOps / Infra</div>
-            <div class="chips">
-              <span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Traefik</span><span class="chip">Gitea Actions</span><span class="chip">Jenkins (JCasC)</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat"><span lang="zh">儲存 / 網路</span><span lang="en">Storage / Network</span></div>
-            <div class="chips">
-              <span class="chip">SeaweedFS</span><span class="chip">S3 / MinIO</span><span class="chip">Object Storage</span><span class="chip">TLS</span><span class="chip">Network Segmentation</span><span class="chip">LDAP / JWT</span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill__cat"><span lang="zh">其他</span><span lang="en">Other</span></div>
-            <div class="chips">
-              <span class="chip">Git</span><span class="chip">Linux</span><span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">Microservices</span><span class="chip">Edge Inference</span>
-            </div>
-          </div>
+          </details>
         </div>
       </section>
 
-      <!-- ============ 03 EDUCATION + LANGUAGES ============ -->
-      <section class="sec" id="education">
-        <div class="sec__head">
-          <span class="sec__idx">03</span>
-          <h2 class="sec__title">
-            <span lang="zh">學歷與語言</span><span lang="en">Education & Languages</span>
-            <small>Background</small>
-          </h2>
-        </div>
-        <div class="duo">
-          <div>
-            <div class="row">
-              <div class="row__main">
-                <h4><span lang="zh">國立中興大學</span><span lang="en">Chung Hsing University</span></h4>
-                <span lang="zh">資訊工程與科學 · 碩士</span><span lang="en">M.S., Computer Science & Engineering</span>
-              </div>
-              <div class="row__when">2018/8<br />– 2020/8</div>
-            </div>
-            <div class="row">
-              <div class="row__main">
-                <h4><span lang="zh">東海大學</span><span lang="en">Tunghai University</span></h4>
-                <span lang="zh">資訊工程學系 · 學士</span><span lang="en">B.S., Computer Science & Engineering</span>
-              </div>
-              <div class="row__when">2014/9<br />– 2018/6</div>
-            </div>
-          </div>
-          <div>
-            <div class="row">
-              <div class="row__main">
-                <h4><span lang="zh">英文</span><span lang="en">English</span></h4>
-                <span lang="zh">聽說讀寫中等</span><span lang="en">Intermediate · all-round</span>
-              </div>
-              <div class="row__when"><b>TOEIC</b>795</div>
-            </div>
-            <div class="row">
-              <div class="row__main">
-                <h4><span lang="zh">日文</span><span lang="en">Japanese</span></h4>
-                <span lang="zh">讀寫聽中等、說略懂</span><span lang="en">Intermediate reading / writing</span>
-              </div>
-              <div class="row__when"><b>JLPT</b>N3</div>
-            </div>
-          </div>
+      <!-- ============ STACK ============ -->
+      <section class="sec" aria-labelledby="stack-title">
+        <h2 id="stack-title"><span lang="zh">技術能力</span><span lang="en">Technical skills</span></h2>
+        <div class="split">
+          <dl class="rows stack-rows">
+            <div><dt><span lang="zh">語言</span><span lang="en">Languages</span></dt><dd>Python · TypeScript · JavaScript · PHP · Bash · SQL</dd></div>
+            <div><dt><span lang="zh">後端</span><span lang="en">Backend</span></dt><dd>FastAPI · Node.js · SQLModel · SQLAlchemy · Alembic · Redis + ARQ · APScheduler</dd></div>
+            <div><dt><span lang="zh">前端</span><span lang="en">Frontend</span></dt><dd>React 19 · React Router 7 · Vue.js · Tailwind CSS · Vite · jQuery</dd></div>
+            <div><dt>AI / ML · CV</dt><dd>YOLO · SAM2 · ONNX Runtime · PyTorch · TensorFlow · OpenCV · MLflow · DVC · Edge Inference</dd></div>
+            <div><dt>LLM / GenAI</dt><dd>vLLM · LLM Serving · RAG · Tool Calling · <span lang="zh">FP8 量化</span><span lang="en">FP8 quantization</span> · Open WebUI · SearXNG · Firecrawl · n8n · IBM watsonx</dd></div>
+          </dl>
+          <dl class="rows stack-rows">
+            <div><dt><span lang="zh">資料庫</span><span lang="en">Databases</span></dt><dd>PostgreSQL · MySQL · MSSQL · Oracle</dd></div>
+            <div><dt>DevOps / Infra</dt><dd>Docker · Docker Compose · Traefik · Gitea Actions · Jenkins (JCasC) · GitHub Actions · CI/CD</dd></div>
+            <div><dt><span lang="zh">儲存 / 網路</span><span lang="en">Storage / Net</span></dt><dd>SeaweedFS · S3 / MinIO · Object Storage · TLS · Network Segmentation · LDAP / JWT</dd></div>
+            <div><dt><span lang="zh">其他</span><span lang="en">Other</span></dt><dd>Git · Linux · Arduino · Raspberry Pi · Microservices</dd></div>
+          </dl>
         </div>
       </section>
 
-      <!-- ============ 04 BEYOND ============ -->
-      <section class="sec" id="beyond">
-        <div class="sec__head">
-          <span class="sec__idx">04</span>
-          <h2 class="sec__title">
-            <span lang="zh">工作之外</span><span lang="en">Beyond the day job</span>
-            <small>Side quests</small>
-          </h2>
-        </div>
-        <p class="beyond__intro">
-          <span lang="zh">對 AI 應用高度熱忱——自費購入一台 GB10 作為個人 AI 工作站，持續探索本地 LLM 與 Agent 應用，並打造各種 side project。</span>
-          <span lang="en">Deeply into AI applications — I self-funded a GB10 as a personal AI workstation to explore local LLMs and agents, and keep shipping side projects.</span>
-        </p>
-        <div class="cards">
-          <div class="card">
-            <div class="card__tag">Hardware · Self-host</div>
-            <h3 class="card__name">GB10 AI Workstation</h3>
-            <p class="card__desc">
-              <span lang="zh">自架 OpenClaw / Hermes，作為本地 LLM 與 Agent 的實驗場。</span>
-              <span lang="en">Self-hosting OpenClaw / Hermes as a local LLM & agent playground.</span>
-            </p>
-          </div>
-          <div class="card">
-            <div class="card__tag">Side Project · Media</div>
-            <h3 class="card__name"><span lang="zh">AI 自動剪輯（Auto-Clip）</span><span lang="en">Auto-Clip</span></h3>
-            <p class="card__stack">Python · vLLM(Qwen) · faster-whisper · ffmpeg · FastAPI · React</p>
-            <p class="card__desc">
-              <span lang="zh">把授權的 YouTube 直播 VOD 自動轉成附繁中字幕的精華短影音（16:9 + 9:16 Shorts）。核心是<b>可斷點續跑的狀態機 pipeline</b>，融合聊天密度／heatmap／音訊能量三訊號挑候選；全程在本機 GPU + 本地 LLM 運行、<b>零雲端成本</b>，並有人在迴路的審核閉環可只重算單一片段。約 6.4k 行 Python/TS。</span>
-              <span lang="en">Turns licensed YouTube live VODs into highlight shorts (16:9 + 9:16) with zh-TW subtitles. A <b>resumable state-machine pipeline</b> fuses three signals (chat density / heatmap / audio energy) to pick candidates; runs entirely on a local GPU + local LLM at <b>zero cloud cost</b>, with a human-in-the-loop review loop that recomputes a single clip at a time. ~6.4k lines of Python/TS.</span>
-            </p>
-          </div>
-          <div class="card">
-            <div class="card__tag">Agents · LLM</div>
-            <h3 class="card__name"><span lang="zh">AI 虛擬小鎮</span><span lang="en">AI Virtual Town</span></h3>
-            <p class="card__stack">Python · FastAPI · LiteLLM · vLLM(Qwen 35B) · React 19</p>
-            <p class="card__desc">
-              <span lang="zh">由 LLM 自主驅動的開放世界 RPG：角色不是腳本 NPC，而是各有人格、記憶與目標的 agent，在共享世界裡自行行動互動。設計 <b>World Engine 中央仲裁架構</b>（角色只輸出 Intent、由 adjudicator 決定結果），自架本地 vLLM 推論<b>加速約 20×</b>，並建立可回歸測試的世界活性評鑑 rubric，把「世界有沒有活起來」變成可量化指標。</span>
-              <span lang="en">An LLM-driven open-world RPG where characters aren't scripted NPCs but agents with their own persona, memory, and goals. Built a <b>central World Engine arbitration architecture</b> (characters emit only "intent"; an adjudicator resolves outcomes), self-hosted local vLLM for <b>~20× faster inference</b>, and a regression-testable rubric that turns "is the world alive?" into a measurable metric.</span>
-            </p>
-          </div>
-          <div class="card">
-            <div class="card__tag">For Fun</div>
-            <h3 class="card__name"><span lang="zh">鏈上與遊戲</span><span lang="en">On-chain & Games</span></h3>
-            <p class="card__desc">
-              <span lang="zh">NFT 智能合約部署、Unity 2D 小遊戲，並每日刷 LeetCode 保持手感。</span>
-              <span lang="en">NFT smart contracts, Unity 2D games, and daily LeetCode to stay sharp.</span>
-            </p>
-          </div>
+      <!-- ============ EDUCATION + LANGUAGES ============ -->
+      <section class="sec" aria-labelledby="edu-title">
+        <h2 id="edu-title"><span lang="zh">學歷與語言</span><span lang="en">Education &amp; languages</span></h2>
+        <div class="split">
+          <dl class="rows">
+            <div>
+              <dt><span lang="zh">碩士</span><span lang="en">M.S.</span></dt>
+              <dd><b><span lang="zh">國立中興大學</span><span lang="en">National Chung Hsing University</span></b><span lang="zh">資訊工程與科學</span><span lang="en">Computer Science &amp; Engineering</span></dd>
+              <span class="when">2018/8 – 2020/8</span>
+            </div>
+            <div>
+              <dt><span lang="zh">學士</span><span lang="en">B.S.</span></dt>
+              <dd><b><span lang="zh">東海大學</span><span lang="en">Tunghai University</span></b><span lang="zh">資訊工程學系</span><span lang="en">Computer Science &amp; Engineering</span></dd>
+              <span class="when">2014/9 – 2018/6</span>
+            </div>
+          </dl>
+          <dl class="rows">
+            <div>
+              <dt><span lang="zh">英文</span><span lang="en">English</span></dt>
+              <dd><span lang="zh">聽說讀寫中等</span><span lang="en">Intermediate · all-round</span></dd>
+              <span class="score">TOEIC 795</span>
+            </div>
+            <div>
+              <dt><span lang="zh">日文</span><span lang="en">Japanese</span></dt>
+              <dd><span lang="zh">讀寫聽中等、說略懂</span><span lang="en">Intermediate reading / writing</span></dd>
+              <span class="score">JLPT N3</span>
+            </div>
+          </dl>
         </div>
       </section>
 
-      <!-- ============ 05 CONTACT ============ -->
-      <section class="sec" id="contact">
-        <div class="sec__head">
-          <span class="sec__idx">05</span>
-          <h2 class="sec__title">
-            <span lang="zh">聯絡方式</span><span lang="en">Get in touch</span>
-            <small>Contact</small>
-          </h2>
-        </div>
-        <dl class="contact">
-          <a href="mailto:timmy85618@gmail.com">
-            <dt>Email</dt>
-            <dd>timmy85618@gmail.com</dd>
-          </a>
-          <a href="https://github.com/Timmy0618" target="_blank" rel="noopener">
-            <dt>GitHub</dt>
-            <dd>github.com/Timmy0618</dd>
-          </a>
-          <div>
-            <dt><span lang="zh">地點</span><span lang="en">Location</span></dt>
-            <dd><span lang="zh">新竹市東區</span><span lang="en">Hsinchu, TW</span></dd>
-          </div>
+      <!-- ============ CONTACT ============ -->
+      <section class="close" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">
+          <span lang="zh">在職中，正在看下一個機會。歡迎來信約時間聊聊。</span>
+          <span lang="en">Currently employed and open to the next role. Email me to set up a chat.</span>
+        </h2>
+        <a class="mail" href="mailto:timmy85618@gmail.com">timmy85618@gmail.com</a>
+        <dl class="close__meta">
+          <div><dt>GITHUB</dt><dd><a class="link" href="https://github.com/Timmy0618" target="_blank" rel="noopener">github.com/Timmy0618</a></dd></div>
+          <div><dt><span lang="zh">地點</span><span lang="en">LOCATION</span></dt><dd><span lang="zh">新竹市東區</span><span lang="en">Hsinchu, TW</span></dd></div>
         </dl>
+        <p class="traits">
+          <span lang="zh">積極 · 熱情 · 善於溝通 · 喜歡思考 · 團隊合作</span>
+          <span lang="en">Proactive · Passionate · Communicator · Analytical · Team player</span>
+        </p>
       </section>
 
       <footer class="foot">
         <span>© 2021 – <span id="yr"></span> 趙奕錡 · YICHI CHAO</span>
-        <span><span lang="zh">在職中 · 可洽談機會</span><span lang="en">Employed · open to opportunities</span></span>
+        <span>Hsinchu, TW</span>
       </footer>
     </main>
 
     <script>
       (function () {
         var root = document.documentElement;
-        var reduce =
-          window.matchMedia &&
-          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
         document.getElementById("yr").textContent = new Date().getFullYear();
 
-        function store(k, v) {
-          try {
-            localStorage.setItem(k, v);
-          } catch (e) {}
-        }
-        function load(k) {
-          try {
-            return localStorage.getItem(k);
-          } catch (e) {
-            return null;
-          }
-        }
-
-        /* ---- theme (default light / day) ---- */
-        var savedTheme = load("resume-theme");
-        if (savedTheme === "dark" || savedTheme === "light") {
-          root.dataset.theme = savedTheme;
-        } // else keep markup default = light
-
-        var refresh = document.getElementById("refresh");
-        document.getElementById("theme").addEventListener("click", function () {
-          var next = root.dataset.theme === "dark" ? "light" : "dark";
-          if (!reduce) {
-            refresh.classList.remove("refresh--go");
-            void refresh.offsetWidth; // restart animation
-            refresh.classList.add("refresh--go");
-          }
-          root.dataset.theme = next;
-          store("resume-theme", next);
-          if (window.__rerenderDiagrams) window.__rerenderDiagrams();
-        });
+        function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+        function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 
         /* ---- language (default zh) ---- */
         var zhBtn = document.getElementById("lang-zh");
         var enBtn = document.getElementById("lang-en");
-
         function setLang(lang) {
           root.dataset.lang = lang;
           root.setAttribute("lang", lang === "en" ? "en" : "zh-Hant");
@@ -1549,101 +887,124 @@ flowchart TB
           enBtn.setAttribute("aria-pressed", String(lang === "en"));
           store("resume-lang", lang);
         }
-
         var savedLang = load("resume-lang");
         if (savedLang === "en" || savedLang === "zh") setLang(savedLang);
+        zhBtn.addEventListener("click", function () { setLang("zh"); });
+        enBtn.addEventListener("click", function () { setLang("en"); });
 
-        zhBtn.addEventListener("click", function () {
-          setLang("zh");
+        /* ---- theme: saved choice, else follow the system ---- */
+        var themeBtn = document.getElementById("theme");
+        function setTheme(t, save) {
+          root.dataset.theme = t;
+          themeBtn.setAttribute("aria-pressed", String(t === "dark"));
+          if (save) store("resume-theme", t);
+          document.dispatchEvent(new Event("themechange"));
+        }
+        themeBtn.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+        themeBtn.addEventListener("click", function () {
+          setTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
         });
-        enBtn.addEventListener("click", function () {
-          setLang("en");
+        matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+          if (!load("resume-theme")) setTheme(e.matches ? "dark" : "light", false);
         });
+
+        /* ---- expand / collapse every ledger row ---- */
+        var rows = Array.prototype.slice.call(document.querySelectorAll(".row"));
+        var toggle = document.getElementById("toggle-all");
+        var labels = { zh: ["全部展開", "全部收合"], en: ["Expand all", "Collapse all"] };
+        function sync() {
+          var all = rows.every(function (r) { return r.open; });
+          toggle.querySelector('[lang="zh"]').textContent = labels.zh[all ? 1 : 0];
+          toggle.querySelector('[lang="en"]').textContent = labels.en[all ? 1 : 0];
+          toggle.setAttribute("aria-expanded", String(all));
+        }
+        toggle.addEventListener("click", function () {
+          var open = !rows.every(function (r) { return r.open; });
+          rows.forEach(function (r) { r.open = open; });
+        });
+        rows.forEach(function (r) { r.addEventListener("toggle", sync); });
+        sync();
       })();
     </script>
 
     <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
 
-      // Each diagram is rendered lazily the first time its <details> opens, so
-      // it is never laid out while hidden (hidden labels measure as 0 and the
-      // graph collapses). Re-rendered on theme change to repaint colours.
-      var entries = Array.prototype.slice
-        .call(document.querySelectorAll(".diag"))
-        .map(function (d) {
-          var node = d.querySelector(".mermaid");
-          return { d: d, node: node, src: node.textContent };
-        });
-
-      function configure() {
-        var cs = getComputedStyle(document.documentElement);
-        var g = function (k) {
-          return cs.getPropertyValue(k).trim();
-        };
+      // Diagrams render the first time their row opens: laid out while hidden,
+      // labels measure 0 and the graph collapses.
+      function configure(cs) {
+        var g = function (k) { return cs.getPropertyValue(k).trim(); };
         mermaid.initialize({
           startOnLoad: false,
           theme: "base",
           securityLevel: "strict",
           fontFamily: "'IBM Plex Mono', ui-monospace, monospace",
-          flowchart: {
-            htmlLabels: false,
-            curve: "basis",
-            padding: 14,
-            nodeSpacing: 46,
-            rankSpacing: 58,
-            useMaxWidth: true,
-          },
+          flowchart: { htmlLabels: false, curve: "linear", padding: 14, nodeSpacing: 46, rankSpacing: 58, useMaxWidth: true },
           themeVariables: {
             fontSize: "13px",
-            background: g("--paper"),
-            mainBkg: g("--card"),
-            primaryColor: g("--card"),
+            background: g("--card"),
+            mainBkg: g("--paper"),
+            primaryColor: g("--paper"),
             primaryBorderColor: g("--line-strong"),
             primaryTextColor: g("--ink"),
-            secondaryColor: g("--paper-2"),
-            secondaryBorderColor: g("--line-strong"),
-            secondaryTextColor: g("--ink"),
-            tertiaryColor: g("--paper-2"),
-            tertiaryBorderColor: g("--line-strong"),
-            tertiaryTextColor: g("--ink"),
+            secondaryColor: g("--paper"),
+            tertiaryColor: g("--paper"),
             lineColor: g("--muted"),
-            clusterBkg: g("--paper-2"),
+            clusterBkg: g("--paper"),
             clusterBorder: g("--line-strong"),
             titleColor: g("--ink"),
             nodeBorder: g("--line-strong"),
             nodeTextColor: g("--ink"),
-            edgeLabelBackground: g("--paper"),
+            edgeLabelBackground: g("--card"),
           },
         });
       }
 
-      async function renderOne(e) {
-        configure();
-        e.node.removeAttribute("data-processed");
-        e.node.textContent = e.src;
+      // Mermaid is not safe to run concurrently ("Expand all" opens every row at
+      // once), so renders go through one queue, each from its pristine source.
+      var queue = Promise.resolve();
+      var done = new WeakSet();
+      var seq = 0;
+
+      async function renderOne(node, src, id) {
+        if (done.has(node)) return;
+        done.add(node);
+        var cs = getComputedStyle(document.documentElement);
+        configure(cs);
+        // classDefs reference CSS tokens; resolve them for the current scheme
+        var text = src.replace(/var\((--[\w-]+)\)/g, function (_, k) {
+          return cs.getPropertyValue(k).trim();
+        });
+        // own ids: mermaid's time-based ids can collide, and a repaint must not
+        // reuse the id of the SVG it is replacing
         try {
-          await mermaid.run({ nodes: [e.node] });
-        } catch (err) {
-          /* leave source text visible on failure */
-        }
+          var out = await mermaid.render(id + "-" + ++seq, text);
+          node.innerHTML = out.svg;
+        } catch (err) { /* source stays as text */ }
+        node.setAttribute("data-processed", "true");
       }
 
-      entries.forEach(function (e) {
-        e.d.addEventListener("toggle", function () {
-          if (e.d.open && !e.node.hasAttribute("data-processed")) renderOne(e);
-        });
-        // render now if already open (e.g. deep-link / preview)
-        if (e.d.open && !e.node.hasAttribute("data-processed")) renderOne(e);
+      var diagrams = [];
+      document.querySelectorAll(".row").forEach(function (row, i) {
+        var node = row.querySelector(".mermaid");
+        if (!node) return;
+        var src = node.textContent;
+        function render() {
+          queue = queue.then(function () { return renderOne(node, src, "arch-" + i); });
+        }
+        diagrams.push({ row: row, node: node, render: render });
+        row.addEventListener("toggle", function () { if (row.open) render(); });
+        if (row.open) render();
       });
 
-      // repaint open diagrams on theme switch; stale closed ones re-render on next open
-      window.__rerenderDiagrams = function () {
-        entries.forEach(function (e) {
-          if (!e.node.hasAttribute("data-processed")) return;
-          if (e.d.open) renderOne(e);
-          else e.node.removeAttribute("data-processed");
+      // colours are baked into the SVG: repaint open diagrams, closed ones on next open
+      document.addEventListener("themechange", function () {
+        diagrams.forEach(function (d) {
+          if (!done.has(d.node)) return;
+          done.delete(d.node);
+          if (d.row.open) d.render();
         });
-      };
+      });
     </script>
   </body>
 </html>

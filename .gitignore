@@ -1,0 +1,4 @@
+.DS_Store
+.impeccable/*
+!.impeccable/design.json
+!.impeccable/surfaces/
